@@ -38,7 +38,9 @@ class _CardsMenuState extends State<CardsMenu> {
             widget.text,
             textAlign: TextAlign.center,
             style: new TextStyle(
-                color: Theme.of(context).primaryColor, fontSize: 16.0),
+                decoration: TextDecoration.none,
+                color: Theme.of(context).primaryColor,
+                fontSize: 14.0),
           ),
         ],
       ),
