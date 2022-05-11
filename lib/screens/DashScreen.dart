@@ -1,3 +1,4 @@
+import 'package:arquidiocese_maceio_app/screens/NoticiasScreen.dart';
 import 'package:arquidiocese_maceio_app/widgets/CardsMenu.dart';
 import 'package:flutter/material.dart';
 
@@ -39,10 +40,17 @@ class _DashScreenState extends State<DashScreen> {
             shrinkWrap: true,
             crossAxisCount: 3,
             children: <Widget>[
-              CardsMenu(
-                  height: 100.0,
-                  icon: Icons.newspaper,
-                  text: "Últimas Noticias"),
+              GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const NoticiasScreen()),
+                ),
+                child: CardsMenu(
+                    height: 100.0,
+                    icon: Icons.newspaper,
+                    text: "Últimas Noticias"),
+              ),
               CardsMenu(height: 100.0, icon: Icons.podcasts, text: "Podcasts"),
               CardsMenu(height: 100.0, icon: Icons.church, text: "Paróquias"),
               CardsMenu(
@@ -59,10 +67,13 @@ class _DashScreenState extends State<DashScreen> {
                   height: 100.0,
                   icon: Icons.podcasts,
                   text: "Seminários e Conventos"),
-              CardsMenu(
-                  height: 100.0,
-                  icon: Icons.podcasts,
-                  text: "Cúria Metropolitana"),
+              GestureDetector(
+                onTap: () => print("Curia"),
+                child: CardsMenu(
+                    height: 100.0,
+                    icon: Icons.podcasts,
+                    text: "Cúria Metropolitana"),
+              ),
             ],
           ),
           Row(

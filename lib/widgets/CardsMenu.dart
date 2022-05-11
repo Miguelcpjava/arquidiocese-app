@@ -17,8 +17,8 @@ class _CardsMenuState extends State<CardsMenu> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.height,
-      width: double.infinity,
+      height: 110,
+      width: 110,
       padding: EdgeInsets.all(5.0),
       margin: EdgeInsets.all(7.0),
       decoration: new BoxDecoration(
@@ -31,7 +31,7 @@ class _CardsMenuState extends State<CardsMenu> {
           Icon(
             widget.icon == null ? Icons.info : widget.icon,
             color: Theme.of(context).primaryColor,
-            size: 50.0,
+            size: 45.0,
           ),
           new Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
           Text(
