@@ -128,8 +128,16 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
                             subtitle: Text(DateFormat("dd/MM/yyyy hh:mm:ss")
                                 .format(_noticias[index].date)),
                             leading: _noticias[index].image != null
-                                ? Image.network(_noticias[index].image)
-                                : Image.asset("assets/img/ImageNA.png"),
+                                ? Image.network(
+                                    _noticias[index].image,
+                                    height: 60,
+                                    width: 60,
+                                  )
+                                : Image.asset(
+                                    "assets/img/ImageNA.png",
+                                    height: 60,
+                                    width: 60,
+                                  ),
                           ),
                         );
                       },
