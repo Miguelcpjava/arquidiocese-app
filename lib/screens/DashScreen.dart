@@ -1,6 +1,8 @@
+import 'package:arquidiocese_maceio_app/data/Constants.dart';
 import 'package:arquidiocese_maceio_app/screens/NoticiasScreen.dart';
 import 'package:arquidiocese_maceio_app/widgets/CardsMenu.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DashScreen extends StatefulWidget {
   const DashScreen({Key? key}) : super(key: key);
@@ -49,30 +51,51 @@ class _DashScreenState extends State<DashScreen> {
                 child: CardsMenu(
                     height: 100.0,
                     icon: Icons.newspaper,
-                    text: "Últimas Noticias"),
+                    text: "Últimas Noticias",
+                    clazz: DashScreen()),
               ),
-              CardsMenu(height: 100.0, icon: Icons.podcasts, text: "Podcasts"),
-              CardsMenu(height: 100.0, icon: Icons.church, text: "Paróquias"),
+              CardsMenu(
+                  height: 100.0,
+                  icon: Icons.podcasts,
+                  text: "Podcasts",
+                  clazz: DashScreen()),
+              CardsMenu(
+                  height: 100.0,
+                  icon: Icons.church,
+                  text: "Paróquias",
+                  clazz: DashScreen()),
               CardsMenu(
                   height: 100.0,
                   icon: Icons.video_library_outlined,
-                  text: "Videos"),
+                  text: "Videos",
+                  clazz: DashScreen()),
               CardsMenu(
                   height: 100.0,
-                  icon: Icons.podcasts,
-                  text: "Pedido de Oração"),
-              CardsMenu(height: 100.0, icon: Icons.contacts, text: "Contato"),
-              CardsMenu(height: 100.0, icon: Icons.podcasts, text: "Santuário"),
+                  icon: FontAwesomeIcons.handsPraying,
+                  text: "Pedido de Oração",
+                  clazz: DashScreen()),
               CardsMenu(
                   height: 100.0,
-                  icon: Icons.podcasts,
-                  text: "Seminários e Conventos"),
+                  icon: Icons.contacts,
+                  text: "Contato",
+                  clazz: DashScreen()),
+              CardsMenu(
+                  height: 100.0,
+                  icon: FontAwesomeIcons.church,
+                  text: "Santuário",
+                  clazz: DashScreen()),
+              CardsMenu(
+                  height: 100.0,
+                  icon: FontAwesomeIcons.cross,
+                  text: "Seminários e Conventos",
+                  clazz: DashScreen()),
               GestureDetector(
                 onTap: () => print("Curia"),
                 child: CardsMenu(
                     height: 100.0,
-                    icon: Icons.podcasts,
-                    text: "Cúria Metropolitana"),
+                    icon: pope_crown,
+                    text: "Cúria Metropolitana",
+                    clazz: DashScreen()),
               ),
             ],
           ),

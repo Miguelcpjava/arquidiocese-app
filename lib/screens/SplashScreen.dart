@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:arquidiocese_maceio_app/screens/DashScreen.dart';
+import 'package:arquidiocese_maceio_app/screens/NoticiasScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -21,11 +22,11 @@ class _SplashScreenState extends State<SplashScreen> {
     });
     super.initState();
 
-    Timer(Duration(seconds: 9), () {
+    Timer(Duration(seconds: 8), () {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => DashScreen(),
+          builder: (context) => NoticiasScreen(),
         ),
       );
     });

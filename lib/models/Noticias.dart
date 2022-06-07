@@ -6,6 +6,7 @@ class Noticia {
   String? category;
   var _icon; //Esse icone é o que vai aparecer na lista de visualização
   String? content;
+  String? link;
 
   Noticia(
       {var image,
@@ -14,6 +15,7 @@ class Noticia {
       var date,
       String? category,
       var icon,
+      String? link,
       String? content}) {
     this.image = image;
     this.title = title;
@@ -21,6 +23,7 @@ class Noticia {
     this.date = date;
     this.category = category;
     this._icon = icon;
+    this.link = link;
     this.content = content;
   }
 
@@ -31,6 +34,7 @@ class Noticia {
     date = json['date'];
     category = json['category'];
     _icon = json['icon'];
+    link = json['link'];
     content = json['content'];
   }
 
@@ -42,6 +46,7 @@ class Noticia {
     data['date'] = this.date;
     data['category'] = this.category;
     data['icon'] = this._icon;
+    data['link'] = this.link;
     data['content'] = this.content;
     return data;
   }
