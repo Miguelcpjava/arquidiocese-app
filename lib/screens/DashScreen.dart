@@ -52,7 +52,7 @@ class _DashScreenState extends State<DashScreen> {
                     height: 100.0,
                     icon: Icons.newspaper,
                     text: "Últimas Noticias",
-                    clazz: DashScreen()),
+                    clazz: NoticiasScreen()),
               ),
               CardsMenu(
                   height: 100.0,

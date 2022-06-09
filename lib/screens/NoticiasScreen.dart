@@ -23,15 +23,20 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
   NewsService newsService = new NewsService();
   RssFeed _rssFeed = new RssFeed(); // RSS Feed Object
   var inputFormat = DateFormat('dd/MM/yyyy HH:mm:ss');
+  late bool loading;
 
   @override
   void initState() {
     print("Initializer...");
     super.initState();
-    if (_noticias.length > 0) _noticias.clear();
-    getListaDeNoticias();
+    setState(() {
+      loading = true;
+    });
 
-    print(_noticias.length);
+    if (_noticias.length > 0) {
+      _noticias.clear();
+    }
+    getListaDeNoticias();
   }
 
   getListaDeNoticias() {
@@ -44,6 +49,7 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
     setState(() {
       _rssFeed = feed;
       adicionarNovaNoticias(_rssFeed.items, true);
+      loading = false;
     });
   }
 
@@ -67,17 +73,14 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
     }
   }
 
-  Loading(BuildContext context) {
-    return showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return Center(
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(darkBlue),
-            ),
-          );
-        });
+  Container Loading() {
+    return Container(
+      child: Center(
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+        ),
+      ),
+    );
   }
 
   @override
@@ -136,48 +139,49 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    height: 500,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(30.0),
-                            topRight: Radius.circular(30.0))),
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 5,
-                        itemBuilder: (BuildContext buildContext, int index) {
-                          if (_noticias.length == 0) {
-                            return Container(
-                                child: Center(child: Loading(buildContext)));
-                          } else {
-                            return Container(
-                              child: ListTile(
-                                onTap: () => _launchUrl(_noticias[index].link),
-                                title: Text(_noticias[index].title!),
-                                subtitle: Text('Publicado em ' +
-                                    DateFormat("dd/MM/yyyy")
-                                        .format(_noticias[index].date)),
-                                leading: Container(
-                                  width: 70.0,
-                                  height: 70.0,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: _noticias[index].image != null
-                                          ? NetworkImage(_noticias[index].image)
-                                          : NetworkImage(
-                                              "assets/img/ImageNA.png",
-                                            ),
+                  child: loading == true
+                      ? Loading()
+                      : Container(
+                          height: 500,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30.0),
+                                  topRight: Radius.circular(30.0))),
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: 5,
+                              itemBuilder:
+                                  (BuildContext buildContext, int index) {
+                                return Container(
+                                  child: ListTile(
+                                    onTap: () =>
+                                        _launchUrl(_noticias[index].link),
+                                    title: Text(_noticias[index].title!),
+                                    subtitle: Text('Publicado em ' +
+                                        DateFormat("dd/MM/yyyy")
+                                            .format(_noticias[index].date)),
+                                    leading: Container(
+                                      width: 70.0,
+                                      height: 70.0,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: _noticias[index].image != null
+                                              ? NetworkImage(
+                                                  _noticias[index].image)
+                                              : NetworkImage(
+                                                  "assets/img/ImageNA.png",
+                                                ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            );
-                          }
-                        }),
-                  ),
+                                );
+                              }),
+                        ),
                 ),
               ],
             ),

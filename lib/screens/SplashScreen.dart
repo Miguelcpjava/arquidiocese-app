@@ -15,20 +15,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    Timer(Duration(seconds: 5), () {
+    super.initState();
+    Timer(const Duration(seconds: 5), () {
       setState(() {
         isLoading = false;
       });
     });
-    super.initState();
 
-    Timer(Duration(seconds: 8), () {
+    Timer(const Duration(seconds: 7), () {
       Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => NoticiasScreen(),
-        ),
-      );
+          context, MaterialPageRoute(builder: (context) => NoticiasScreen()));
     });
   }
 
