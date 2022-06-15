@@ -1,5 +1,6 @@
 import 'package:arquidiocese_maceio_app/data/Constants.dart';
 import 'package:arquidiocese_maceio_app/models/Noticias.dart';
+import 'package:arquidiocese_maceio_app/screens/LoadWidget.dart';
 import 'package:arquidiocese_maceio_app/screens/Noticias/Manchete.dart';
 import 'package:arquidiocese_maceio_app/services/NewsService.dart';
 import 'package:arquidiocese_maceio_app/widgets/AppBarWidget.dart';
@@ -99,7 +100,7 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
                 ),
                 Expanded(
                   child: loading == true
-                      ? CustomAlertDialog("Carregando...")
+                      ? Loading()
                       : RefreshIndicator(
                           onRefresh: getListaDeNoticias,
                           child: Container(

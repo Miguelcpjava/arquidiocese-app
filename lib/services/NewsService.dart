@@ -17,7 +17,7 @@ class NewsService {
       final response = await client.get(Uri.parse(ARQUIDOCESE_RSS_FEED_URL));
       return RssFeed.parse(utf8.decode(response.bodyBytes));
     } catch (e) {
-      CustomAlertDialog(e.toString());
+      CustomAlertDialog("Erro ao tentar comunicação!", e.toString());
       print(e);
     }
     return null;

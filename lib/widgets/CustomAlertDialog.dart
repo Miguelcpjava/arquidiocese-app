@@ -5,79 +5,86 @@ import 'package:flutter/src/widgets/framework.dart';
 
 class CustomAlertDialog extends StatelessWidget {
   String texto;
+  String descricao;
 
-  CustomAlertDialog(this.texto);
+  CustomAlertDialog(this.texto, this.descricao);
+
+  contentBox(context) {
+    const double PADDING_PADRAO = 20;
+    const double RADIUS_PADRAO = 45;
+    return Stack(
+      children: <Widget>[
+        Container(
+          padding: EdgeInsets.only(
+              left: PADDING_PADRAO,
+              top: RADIUS_PADRAO + PADDING_PADRAO,
+              right: PADDING_PADRAO,
+              bottom: PADDING_PADRAO),
+          margin: EdgeInsets.only(top: RADIUS_PADRAO),
+          decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(PADDING_PADRAO),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black, offset: Offset(0, 10), blurRadius: 10),
+              ]),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                this.texto,
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Text(
+                this.descricao,
+                style: TextStyle(fontSize: 14),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 22,
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: FlatButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(
+                      this.texto,
+                      style: TextStyle(fontSize: 18),
+                    )),
+              ),
+            ],
+          ),
+        ), // bottom part
+        Positioned(
+          left: PADDING_PADRAO,
+          right: PADDING_PADRAO,
+          child: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            radius: RADIUS_PADRAO,
+            child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(RADIUS_PADRAO)),
+                child: Image.asset("assets/img/arqbrasao.png")),
+          ),
+        ), // top part
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 260.0,
-      height: 230.0,
-      decoration: new BoxDecoration(
-        shape: BoxShape.rectangle,
-        color: const Color(0xFFFFFF),
-        borderRadius: new BorderRadius.all(new Radius.circular(32.0)),
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
       ),
-      child: new Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          // dialog top
-          new Expanded(
-            child: new Row(
-              children: <Widget>[
-                new Container(
-                  // padding: new EdgeInsets.all(10.0),
-                  decoration: new BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child: new Text(
-                    'Alerta!',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18.0,
-                      fontFamily: 'helvetica_neue_light',
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // dialog centre
-          Expanded(
-            child: new Container(
-              child: new Text(
-                texto,
-                style: TextStyle(
-                  color: Colors.grey.shade500,
-                  fontSize: 12.0,
-                  fontFamily: 'helvetica_neue_light',
-                ),
-              ),
-            ),
-          ),
-
-          // dialog bottom
-          Expanded(
-            child: new Container(
-              padding: new EdgeInsets.all(16.0),
-              decoration: new BoxDecoration(
-                color: Colors.white,
-              ),
-              child: new Text(
-                'OK',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18.0,
-                  fontFamily: 'helvetica_neue_light',
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        ],
-      ),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: contentBox(context),
     );
   }
 }
