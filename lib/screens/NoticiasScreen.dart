@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:arquidiocese_maceio_app/data/Constants.dart';
 import 'package:arquidiocese_maceio_app/data/DataMenu.dart';
 import 'package:arquidiocese_maceio_app/models/Noticias.dart';
+import 'package:arquidiocese_maceio_app/screens/LoadWidget.dart';
 import 'package:arquidiocese_maceio_app/services/NewsService.dart';
 import 'package:arquidiocese_maceio_app/widgets/CardsMenu.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:webfeed/webfeed.dart';
 
 class NoticiasScreen extends StatefulWidget {
@@ -27,7 +27,6 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
 
   @override
   void initState() {
-    print("Initializer...");
     super.initState();
     setState(() {
       loading = true;
@@ -39,7 +38,7 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
     getListaDeNoticias();
   }
 
-  getListaDeNoticias() {
+  Future<void> getListaDeNoticias() async {
     newsService.getFeedNoticiasArquidiocese().then((value) {
       updateFeed(value);
     });
@@ -73,18 +72,10 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
     }
   }
 
-  Container Loading() {
-    return Container(
-      child: Center(
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    var sized = MediaQuery.of(context).size;
+    var qtdCardNews = sized.height * 0.01;
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -141,46 +132,50 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
                 Expanded(
                   child: loading == true
                       ? Loading()
-                      : Container(
-                          height: 500,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(30.0),
-                                  topRight: Radius.circular(30.0))),
-                          child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: 5,
-                              itemBuilder:
-                                  (BuildContext buildContext, int index) {
-                                return Container(
-                                  child: ListTile(
-                                    onTap: () =>
-                                        _launchUrl(_noticias[index].link),
-                                    title: Text(_noticias[index].title!),
-                                    subtitle: Text('Publicado em ' +
-                                        DateFormat("dd/MM/yyyy")
-                                            .format(_noticias[index].date)),
-                                    leading: Container(
-                                      width: 70.0,
-                                      height: 70.0,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: _noticias[index].image != null
-                                              ? NetworkImage(
-                                                  _noticias[index].image)
-                                              : NetworkImage(
-                                                  "assets/img/ImageNA.png",
-                                                ),
+                      : RefreshIndicator(
+                          onRefresh: getListaDeNoticias,
+                          child: Container(
+                            height: 500,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(30.0),
+                                    topRight: Radius.circular(30.0))),
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: 5,
+                                itemBuilder:
+                                    (BuildContext buildContext, int index) {
+                                  return Container(
+                                    child: ListTile(
+                                      onTap: () => newsService
+                                          .getLaunchUrl(_noticias[index].link),
+                                      title: Text(_noticias[index].title!),
+                                      subtitle: Text('Publicado em ' +
+                                          DateFormat("dd/MM/yyyy")
+                                              .format(_noticias[index].date)),
+                                      leading: Container(
+                                        width: 70.0,
+                                        height: 70.0,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image:
+                                                _noticias[index].image != null
+                                                    ? NetworkImage(
+                                                        _noticias[index].image)
+                                                    : NetworkImage(
+                                                        "assets/img/ImageNA.png",
+                                                      ),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              }),
+                                  );
+                                }),
+                          ),
                         ),
                 ),
               ],
@@ -189,10 +184,5 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
         ],
       ),
     );
-  }
-
-  void _launchUrl(String? link) async {
-    Uri url = Uri.parse(link!);
-    if (!await launchUrl(url)) throw 'Não foi possivel acessar $url';
   }
 }
