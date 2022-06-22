@@ -61,7 +61,6 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("Noticias agora: " + _noticias.length.toString());
     var size = MediaQuery.of(context).size;
     var qtdCardNews = size.height * 0.025;
     return Scaffold(
@@ -78,7 +77,16 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                buildAppBar(context),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 25.0),
+                    child: IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: Icon(Icons.arrow_back_ios),
+                        color: Colors.white),
+                  ),
+                ),
                 Center(
                   child: Icon(
                     Icons.newspaper,
@@ -121,6 +129,7 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) => MancheteScreen(
+                                            link: _noticias[index].link,
                                             titulo: _noticias[index].title,
                                             date: DateFormat("dd/MM/yyyy")
                                                 .format(_noticias[index].date),

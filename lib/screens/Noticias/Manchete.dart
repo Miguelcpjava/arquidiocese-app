@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:share_plus/share_plus.dart';
 
 class MancheteScreen extends StatelessWidget {
   final String? conteudo;
@@ -10,6 +9,7 @@ class MancheteScreen extends StatelessWidget {
   final String? titulo;
   final String? subtitulo;
   final String? image;
+  final String? link;
 
   const MancheteScreen(
       {Key? key,
@@ -18,7 +18,8 @@ class MancheteScreen extends StatelessWidget {
       this.date,
       this.image,
       this.subtitulo,
-      this.titulo})
+      this.titulo,
+      this.link})
       : super(key: key);
 
   @override
@@ -59,8 +60,14 @@ class MancheteScreen extends StatelessWidget {
                     SizedBox(
                       width: 10.0,
                     ),
-                    Icon(Icons.share),
-                    Text("Compartilhar"),
+                    InkWell(
+                        onTap: () => {
+                              Share.share(
+                                  'Eu li a matéria, $titulo, no App da Arquidiocese de Maceió $link')
+                            },
+                        child: Row(
+                          children: [Icon(Icons.share), Text("Compartilhar")],
+                        )),
                   ],
                 ),
                 Align(
@@ -88,7 +95,7 @@ class MancheteScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 12.0),
+            padding: EdgeInsets.only(top: 25.0),
             child: IconButton(
                 onPressed: () => Navigator.pop(context),
                 icon: Icon(Icons.arrow_back_ios),

@@ -14,40 +14,40 @@ List<Menu> menus = [
       height: 100.0,
       icon: Icons.keyboard_voice_sharp,
       title: "Podcasts",
-      widget: UltimasNoticiasScreen()),
+      widget: Container()),
   Menu(
       height: 100.0,
       icon: Icons.church,
       title: "Paróquias",
-      widget: UltimasNoticiasScreen()),
+      widget: Container()),
   Menu(
       height: 100.0,
       icon: Icons.video_library_outlined,
       title: "Videos",
-      widget: UltimasNoticiasScreen()),
+      widget: Container()),
   Menu(
       height: 100.0,
       icon: FontAwesomeIcons.handsPraying,
       title: "Pedido de Oração",
-      widget: UltimasNoticiasScreen()),
+      widget: Container()),
   Menu(
       height: 100.0,
       icon: Icons.contacts,
       title: "Contato",
-      widget: UltimasNoticiasScreen()),
+      widget: Container()),
   Menu(
       height: 100.0,
       icon: FontAwesomeIcons.church,
       title: "Santuário",
-      widget: UltimasNoticiasScreen()),
+      widget: Container()),
   Menu(
       height: 100.0,
       icon: Icons.church_sharp,
       title: "Seminários e Conventos",
-      widget: UltimasNoticiasScreen()),
+      widget: Container()),
   Menu(
       height: 100.0,
       icon: pope_crown,
       title: "Cúria Metropolitana",
-      widget: UltimasNoticiasScreen()),
+      widget: Container()),
 ];
