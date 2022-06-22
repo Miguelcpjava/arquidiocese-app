@@ -72,6 +72,27 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
     }
   }
 
+  void activateSnackBar(String title, BuildContext context) {
+    String message = "O menu $title está em desenvolvimento!";
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        elevation: 0,
+        content: Text(
+          "O menu $title está em desenvolvimento!",
+          style: TextStyle(
+              color: Colors.white, fontSize: 15, fontWeight: FontWeight.w600),
+        ),
+        duration: Duration(milliseconds: 700),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(16.0),
+              topRight: const Radius.circular(16.0)),
+        ),
+        backgroundColor: darkBlue,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var sized = MediaQuery.of(context).size;
@@ -119,11 +140,29 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
                         child: ListView.builder(
                           itemCount: menus.length,
                           scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => CardsMenu(
-                              height: menus[index].height,
-                              icon: menus[index].icon,
-                              text: menus[index].title,
-                              clazz: menus[index].widget),
+                          itemBuilder: (context, index) =>
+                              menus[index].widget.runtimeType.toString() !=
+                                      "Container"
+                                  ? GestureDetector(
+                                      onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                menus[index].widget),
+                                      ),
+                                      child: CardsMenu(
+                                          height: menus[index].height,
+                                          icon: menus[index].icon,
+                                          text: menus[index].title),
+                                    )
+                                  : GestureDetector(
+                                      onTap: () => activateSnackBar(
+                                          menus[index].title, context),
+                                      child: CardsMenu(
+                                          height: menus[index].height,
+                                          icon: menus[index].icon,
+                                          text: menus[index].title),
+                                    ),
                         ),
                       ),
                     ],
