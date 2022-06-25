@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.arquidiocese_maceio_app">
    <application
-        android:label="arquidiocese_maceio_app"
+        android:label="Arquidiocese de Maceió"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

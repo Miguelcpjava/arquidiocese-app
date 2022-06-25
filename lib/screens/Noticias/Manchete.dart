@@ -1,3 +1,4 @@
+import 'package:arquidiocese_maceio_app/data/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:share_plus/share_plus.dart';
@@ -99,7 +100,7 @@ class MancheteScreen extends StatelessWidget {
             child: IconButton(
                 onPressed: () => Navigator.pop(context),
                 icon: Icon(Icons.arrow_back_ios),
-                color: Colors.black),
+                color: yellowAccenture),
           )
         ],
       ),

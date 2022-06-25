@@ -118,7 +118,7 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
                   child: Image.asset(
                     "assets/img/arqbrasao.png",
                     alignment: Alignment.centerRight,
-                    width: 120,
+                    width: 110,
                   ),
                 ),
                 SizedBox(
@@ -131,8 +131,8 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
                         fontSize: 20,
                         decoration: TextDecoration.none)),
                 SizedBox(
-                  height: 115,
-                  width: double.infinity,
+                  height: 118,
+                  width: sized.width,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -167,6 +167,9 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
                       ),
                     ],
                   ),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 Expanded(
                   child: loading == true
