@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:arquidiocese_maceio_app/data/Constants.dart';
 import 'package:arquidiocese_maceio_app/data/DataMenu.dart';
@@ -19,9 +18,9 @@ class NoticiasScreen extends StatefulWidget {
 
 //https://stackoverflow.com/questions/60978347/stack-an-image-in-two-widgets-flutter
 class _NoticiasScreenState extends State<NoticiasScreen> {
-  List<Noticia> _noticias = [];
-  NewsService newsService = new NewsService();
-  RssFeed _rssFeed = new RssFeed(); // RSS Feed Object
+  final List<Noticia> _noticias = [];
+  NewsService newsService = NewsService();
+  RssFeed _rssFeed = RssFeed(); // RSS Feed Object
   var inputFormat = DateFormat('dd/MM/yyyy HH:mm:ss');
   late bool loading;
 
@@ -32,7 +31,7 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
       loading = true;
     });
 
-    if (_noticias.length > 0) {
+    if (_noticias.isNotEmpty) {
       _noticias.clear();
     }
     getListaDeNoticias();
@@ -79,14 +78,14 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
         elevation: 0,
         content: Text(
           "O menu $title está em desenvolvimento!",
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.white, fontSize: 15, fontWeight: FontWeight.w600),
         ),
-        duration: Duration(milliseconds: 700),
-        shape: RoundedRectangleBorder(
+        duration: const Duration(milliseconds: 700),
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(16.0),
-              topRight: const Radius.circular(16.0)),
+              topRight: Radius.circular(16.0)),
         ),
         backgroundColor: darkBlue,
       ),
@@ -102,7 +101,7 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
         fit: StackFit.expand,
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: darkBlue,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30.0),
@@ -111,7 +110,7 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 55,
                 ),
                 Center(
@@ -121,10 +120,10 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
                     width: 110,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text("Arquidiocese de Maceió",
+                const Text("Arquidiocese de Maceió",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.white,
@@ -168,7 +167,7 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Expanded(
@@ -178,7 +177,7 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
                           onRefresh: getListaDeNoticias,
                           child: Container(
                             height: 500,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(30.0),
@@ -208,7 +207,7 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
                                                 _noticias[index].image != null
                                                     ? NetworkImage(
                                                         _noticias[index].image)
-                                                    : NetworkImage(
+                                                    : const NetworkImage(
                                                         "assets/img/ImageNA.png",
                                                       ),
                                           ),

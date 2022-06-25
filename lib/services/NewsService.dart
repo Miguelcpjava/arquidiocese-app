@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:arquidiocese_maceio_app/models/Noticias.dart';
 import 'package:arquidiocese_maceio_app/widgets/CustomAlertDialog.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';

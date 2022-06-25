@@ -17,7 +17,7 @@ class MenuDrawer extends StatelessWidget {
             color: Colors.grey.withAlpha(20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+              children: const <Widget>[
                 CircleAvatar(
                   radius: 55,
                   backgroundColor: Color(0xffFDCF09),
@@ -37,10 +37,10 @@ class MenuDrawer extends StatelessWidget {
             onTap: () {
               debugPrint("Selecionou as notas");
             },
-            leading: Icon(Icons.movie),
-            title: Text("Vídeos"),
+            leading: const Icon(Icons.movie),
+            title: const Text("Vídeos"),
           ),
-          Divider(
+          const Divider(
             height: 1,
             color: Colors.grey,
           ),
@@ -48,10 +48,10 @@ class MenuDrawer extends StatelessWidget {
             onTap: () {
               debugPrint("Selecionou a frequencia");
             },
-            leading: Icon(Icons.fiber_new_sharp),
-            title: Text("Frequência"),
+            leading: const Icon(Icons.fiber_new_sharp),
+            title: const Text("Frequência"),
           ),
-          Divider(
+          const Divider(
             height: 1,
             color: Colors.grey,
           ),
@@ -59,10 +59,10 @@ class MenuDrawer extends StatelessWidget {
             onTap: () {
               debugPrint("Selecionou as atividades");
             },
-            leading: Icon(Icons.assignment),
-            title: Text("Eventos"),
+            leading: const Icon(Icons.assignment),
+            title: const Text("Eventos"),
           ),
-          Divider(
+          const Divider(
             height: 1,
             color: Colors.grey,
           ),
@@ -71,10 +71,10 @@ class MenuDrawer extends StatelessWidget {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ParoquiaScreen()));
             },
-            leading: Icon(Icons.location_city_rounded),
-            title: Text("Paróquias"),
+            leading: const Icon(Icons.location_city_rounded),
+            title: const Text("Paróquias"),
           ),
-          Divider(
+          const Divider(
             height: 1,
             color: Colors.grey,
           ),
@@ -82,8 +82,8 @@ class MenuDrawer extends StatelessWidget {
             onTap: () {
               debugPrint("Selecionou saída");
             },
-            leading: Icon(Icons.exit_to_app),
-            title: Text("Sair"),
+            leading: const Icon(Icons.exit_to_app),
+            title: const Text("Sair"),
           ),
         ],
       ),

@@ -18,7 +18,7 @@ class _DashScreenState extends State<DashScreen> {
       color: Colors.blue[900],
       child: Column(
         children: <Widget>[
-          SizedBox(
+          const SizedBox(
             height: 60,
           ),
           Center(
@@ -28,10 +28,10 @@ class _DashScreenState extends State<DashScreen> {
               width: 120,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Text("Arquidiocese de Maceió",
+          const Text("Arquidiocese de Maceió",
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Colors.white,
@@ -48,33 +48,33 @@ class _DashScreenState extends State<DashScreen> {
                   MaterialPageRoute(
                       builder: (context) => const NoticiasScreen()),
                 ),
-                child: CardsMenu(
+                child: const CardsMenu(
                     height: 100.0,
                     icon: Icons.newspaper,
                     text: "Últimas Noticias"),
               ),
-              CardsMenu(height: 100.0, icon: Icons.podcasts, text: "Podcasts"),
-              CardsMenu(height: 100.0, icon: Icons.church, text: "Paróquias"),
-              CardsMenu(
+              const CardsMenu(height: 100.0, icon: Icons.podcasts, text: "Podcasts"),
+              const CardsMenu(height: 100.0, icon: Icons.church, text: "Paróquias"),
+              const CardsMenu(
                   height: 100.0,
                   icon: Icons.video_library_outlined,
                   text: "Videos"),
-              CardsMenu(
+              const CardsMenu(
                   height: 100.0,
                   icon: FontAwesomeIcons.handsPraying,
                   text: "Pedido de Oração"),
-              CardsMenu(height: 100.0, icon: Icons.contacts, text: "Contato"),
-              CardsMenu(
+              const CardsMenu(height: 100.0, icon: Icons.contacts, text: "Contato"),
+              const CardsMenu(
                   height: 100.0,
                   icon: FontAwesomeIcons.church,
                   text: "Santuário"),
-              CardsMenu(
+              const CardsMenu(
                   height: 100.0,
                   icon: FontAwesomeIcons.cross,
                   text: "Seminários e Conventos"),
               GestureDetector(
                 onTap: () => print("Curia"),
-                child: CardsMenu(
+                child: const CardsMenu(
                     height: 100.0,
                     icon: pope_crown,
                     text: "Cúria Metropolitana"),

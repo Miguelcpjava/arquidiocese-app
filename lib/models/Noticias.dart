@@ -22,7 +22,7 @@ class Noticia {
     this.subtitle = subtitle;
     this.date = date;
     this.category = category;
-    this._icon = icon;
+    _icon = icon;
     this.link = link;
     this.content = content;
   }
@@ -39,15 +39,15 @@ class Noticia {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['image'] = this.image;
-    data['title'] = this.title;
-    data['subtitle'] = this.subtitle;
-    data['date'] = this.date;
-    data['category'] = this.category;
-    data['icon'] = this._icon;
-    data['link'] = this.link;
-    data['content'] = this.content;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['image'] = image;
+    data['title'] = title;
+    data['subtitle'] = subtitle;
+    data['date'] = date;
+    data['category'] = category;
+    data['icon'] = _icon;
+    data['link'] = link;
+    data['content'] = content;
     return data;
   }
 }

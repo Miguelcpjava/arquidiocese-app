@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:arquidiocese_maceio_app/screens/DashScreen.dart';
 import 'package:arquidiocese_maceio_app/screens/NoticiasScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -24,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Timer(const Duration(seconds: 7), () {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => NoticiasScreen()));
+          context, MaterialPageRoute(builder: (context) => const NoticiasScreen()));
     });
   }
 
@@ -40,13 +39,13 @@ class _SplashScreenState extends State<SplashScreen> {
                     child: Image.asset('assets/img/arqbrasao.png'),
                     baseColor: Colors.white10,
                     highlightColor: Colors.grey,
-                    period: Duration(seconds: 3),
+                    period: const Duration(seconds: 3),
                   )
                 : Image.asset('assets/img/arqbrasao.png'),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Text(
+            const Text(
               "Carregando...",
               style: TextStyle(
                 color: Colors.blueAccent,

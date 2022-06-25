@@ -5,7 +5,7 @@ class CardsMenu extends StatefulWidget {
   final IconData icon;
   final String text;
 
-  CardsMenu(
+  const CardsMenu(
       {Key? key, required this.height, required this.icon, required this.text})
       : super(key: key);
 
@@ -19,25 +19,25 @@ class _CardsMenuState extends State<CardsMenu> {
     return Container(
       height: 110,
       width: 110,
-      padding: EdgeInsets.all(5.0),
-      margin: EdgeInsets.all(7.0),
-      decoration: new BoxDecoration(
-        borderRadius: new BorderRadius.all(const Radius.circular(10.0)),
+      padding: const EdgeInsets.all(5.0),
+      margin: const EdgeInsets.all(7.0),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
         color: Colors.white,
       ),
       child: Column(
         // Replace with a Row for horizontal icon + text
         children: <Widget>[
           Icon(
-            widget.icon == null ? Icons.info : widget.icon,
+            widget.icon ?? Icons.info,
             color: Theme.of(context).primaryColor,
             size: 45.0,
           ),
-          new Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
           Text(
             widget.text,
             textAlign: TextAlign.center,
-            style: new TextStyle(
+            style: TextStyle(
                 decoration: TextDecoration.none,
                 color: Theme.of(context).primaryColor,
                 fontSize: 14.0),

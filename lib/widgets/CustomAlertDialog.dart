@@ -1,7 +1,4 @@
-import 'package:arquidiocese_maceio_app/data/Constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class CustomAlertDialog extends StatelessWidget {
   String texto;
@@ -15,17 +12,17 @@ class CustomAlertDialog extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
               left: PADDING_PADRAO,
               top: RADIUS_PADRAO + PADDING_PADRAO,
               right: PADDING_PADRAO,
               bottom: PADDING_PADRAO),
-          margin: EdgeInsets.only(top: RADIUS_PADRAO),
+          margin: const EdgeInsets.only(top: RADIUS_PADRAO),
           decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               color: Colors.white,
               borderRadius: BorderRadius.circular(PADDING_PADRAO),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                     color: Colors.black, offset: Offset(0, 10), blurRadius: 10),
               ]),
@@ -33,18 +30,18 @@ class CustomAlertDialog extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(
-                this.texto,
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                texto,
+                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Text(
-                this.descricao,
-                style: TextStyle(fontSize: 14),
+                descricao,
+                style: const TextStyle(fontSize: 14),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 22,
               ),
               Align(
@@ -54,8 +51,8 @@ class CustomAlertDialog extends StatelessWidget {
                       Navigator.of(context).pop();
                     },
                     child: Text(
-                      this.texto,
-                      style: TextStyle(fontSize: 18),
+                      texto,
+                      style: const TextStyle(fontSize: 18),
                     )),
               ),
             ],
@@ -68,7 +65,7 @@ class CustomAlertDialog extends StatelessWidget {
             backgroundColor: Colors.transparent,
             radius: RADIUS_PADRAO,
             child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(RADIUS_PADRAO)),
+                borderRadius: const BorderRadius.all(Radius.circular(RADIUS_PADRAO)),
                 child: Image.asset("assets/img/arqbrasao.png")),
           ),
         ), // top part

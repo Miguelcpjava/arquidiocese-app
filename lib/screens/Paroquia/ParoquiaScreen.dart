@@ -22,11 +22,11 @@ class _ParoquiaScreenState extends State<ParoquiaScreen> {
     List<Paroquia> listaResultado = [];
     if (bairro.isNotEmpty) {
       listaResultado.clear();
-      paroquias.forEach((item) {
+      for (var item in paroquias) {
         if (item.bairroParoquia!.contains(bairro)) {
           listaResultado.add(item);
         }
-      });
+      }
       setState(() {
         listaOriginal.clear();
         listaOriginal.addAll(listaResultado);
@@ -44,9 +44,9 @@ class _ParoquiaScreenState extends State<ParoquiaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Paróquias"),
+        title: const Text("Paróquias"),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(5, 31, 53, .5),
+        backgroundColor: const Color.fromRGBO(5, 31, 53, .5),
       ),
       body: Container(
         child: Column(
@@ -58,7 +58,7 @@ class _ParoquiaScreenState extends State<ParoquiaScreen> {
                   procurarPorBairro(value);
                 },
                 controller: editingController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: "Procurar",
                     hintText: "Procurar",
                     prefixIcon: Icon(Icons.search),
@@ -72,7 +72,7 @@ class _ParoquiaScreenState extends State<ParoquiaScreen> {
               itemCount: listaOriginal.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  leading: CircleAvatar(
+                  leading: const CircleAvatar(
                     backgroundImage: AssetImage("assets/img/igreja.png"),
                   ),
                   title: Text(listaOriginal[index].nomeParoquia!),

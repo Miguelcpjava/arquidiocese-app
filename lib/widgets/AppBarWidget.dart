@@ -9,7 +9,7 @@ Widget buildAppBar(BuildContext context) {
         children: [
           SafeArea(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: darkBlue,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30.0),
@@ -20,7 +20,7 @@ Widget buildAppBar(BuildContext context) {
               width: 16,
               child: GestureDetector(
                 onTap: () => Navigator.pop(context),
-                child: Icon(
+                child: const Icon(
                   Icons.arrow_back_ios_new_outlined,
                   color: Colors.white,
                   size: 32,

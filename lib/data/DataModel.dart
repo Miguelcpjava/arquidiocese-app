@@ -1,7 +1,7 @@
 import 'package:arquidiocese_maceio_app/models/Paroquia.dart';
 
 List<Paroquia> paroquias = [
-  new Paroquia(
+  Paroquia(
     nomeParoquia: "Nossa Senhora da Gruta de Lourdes",
     bairroParoquia: "Gruta de Lourdes",
     enderecoParoquia: "R. Cedro, 27",
@@ -12,7 +12,7 @@ List<Paroquia> paroquias = [
     whatsParoquia: "(82)3333-3333",
     nomeParoco: "Mons. Rubião",
   ),
-  new Paroquia(
+  Paroquia(
     nomeParoquia: "Nossa Senhora do Pérpetuo Socorro",
     bairroParoquia: "Tabuleiro Novo",
     enderecoParoquia: "",
@@ -22,7 +22,7 @@ List<Paroquia> paroquias = [
     whatsParoquia: "(82)3333-3333",
     nomeParoco: "Pe. Jerônimo",
   ),
-  new Paroquia(
+  Paroquia(
     nomeParoquia: "Sta Terezinha do Menino Jesus",
     bairroParoquia: "Serraria",
     enderecoParoquia: "",
@@ -32,7 +32,7 @@ List<Paroquia> paroquias = [
     whatsParoquia: "(82)3333-3333",
     nomeParoco: "Mons. José Augusto",
   ),
-  new Paroquia(
+  Paroquia(
     nomeParoquia: "Sta Catarina Labouré",
     bairroParoquia: "Aldebaran",
     enderecoParoquia: "",
@@ -42,7 +42,7 @@ List<Paroquia> paroquias = [
     whatsParoquia: "(82)3333-3333",
     nomeParoco: "Con. João Neto",
   ),
-  new Paroquia(
+  Paroquia(
     nomeParoquia: "Divino Espírito Santo",
     bairroParoquia: "Jatiúca",
     enderecoParoquia: "",
@@ -52,7 +52,7 @@ List<Paroquia> paroquias = [
     whatsParoquia: "(82)3333-3333",
     nomeParoco: "Pe. ",
   ),
-  new Paroquia(
+  Paroquia(
     nomeParoquia: "São Pedro Apóstolo",
     bairroParoquia: "Ponta verde",
     enderecoParoquia: "",
@@ -62,7 +62,7 @@ List<Paroquia> paroquias = [
     whatsParoquia: "(82)3333-3333",
     nomeParoco: "Pe. ",
   ),
-  new Paroquia(
+  Paroquia(
     nomeParoquia: "Nossa Senhora da Rosa Mística",
     bairroParoquia: "Mangabeiras",
     enderecoParoquia: "",
@@ -72,7 +72,7 @@ List<Paroquia> paroquias = [
     whatsParoquia: "(82)3333-3333",
     nomeParoco: "Pe. ",
   ),
-  new Paroquia(
+  Paroquia(
     nomeParoquia: "Sagrado Coração de Jesus",
     bairroParoquia: "João Sampaio",
     enderecoParoquia: "",
@@ -82,7 +82,7 @@ List<Paroquia> paroquias = [
     whatsParoquia: "",
     nomeParoco: "Pe. ",
   ),
-  new Paroquia(
+  Paroquia(
     nomeParoquia: "Nossa Senhora das Dores",
     bairroParoquia: "Santa Lúcia",
     enderecoParoquia: "",
@@ -92,7 +92,7 @@ List<Paroquia> paroquias = [
     whatsParoquia: "",
     nomeParoco: "Pe. ",
   ),
-  new Paroquia(
+  Paroquia(
     nomeParoquia: "Sagrada Família",
     bairroParoquia: "Jacarecica",
     enderecoParoquia: "",

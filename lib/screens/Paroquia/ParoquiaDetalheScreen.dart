@@ -12,10 +12,10 @@ class ParoquiaDetalhe extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(paroquia.nomeParoquia!),
-        backgroundColor: Color.fromRGBO(5, 31, 53, .5),
-        actions: [],
+        backgroundColor: const Color.fromRGBO(5, 31, 53, .5),
+        actions: const [],
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -23,7 +23,7 @@ class ParoquiaDetalhe extends StatelessWidget {
       ),
       body: Stack(
         children: <Widget>[
-          Container(
+          SizedBox(
             height: size.height * 0.4,
             child: Hero(
               tag: paroquia.nomeParoquia!,
@@ -39,8 +39,8 @@ class ParoquiaDetalhe extends StatelessWidget {
             height: size.height * 0.7,
             width: double.infinity,
             margin: EdgeInsets.only(top: size.height * 0.35),
-            padding: EdgeInsets.all(30),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.all(30),
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(35),
                 topRight: Radius.circular(35),
@@ -53,24 +53,24 @@ class ParoquiaDetalhe extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     paroquia.nomeParoquia!,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Row(
                     children: <Widget>[
-                      Icon(Icons.location_on),
+                      const Icon(Icons.location_on),
                       Text(
                         paroquia.bairroParoquia!,
                         style: TextStyle(color: Colors.grey[500]),
                       ),
-                      Spacer(),
-                      Icon(Icons.phone),
+                      const Spacer(),
+                      const Icon(Icons.phone),
                       Text(paroquia.telefoneParoquia!)
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Row(
@@ -80,7 +80,7 @@ class ParoquiaDetalhe extends StatelessWidget {
                         width: 24,
                       ),
                       Text(paroquia.nomeParoco!),
-                      Spacer(),
+                      const Spacer(),
                       Image.asset(
                         "assets/img/whatsapp-icone-1.png",
                         width: 24,
@@ -88,7 +88,7 @@ class ParoquiaDetalhe extends StatelessWidget {
                       Text(paroquia.whatsParoquia!)
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(

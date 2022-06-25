@@ -36,29 +36,29 @@ class MancheteScreen extends StatelessWidget {
               children: [
                 ClipRect(
                   child: Image.network(
-                    this.image!,
+                    image!,
                     fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5.0,
                 ),
                 Row(
                   children: [
-                    Icon(Icons.tag),
+                    const Icon(Icons.tag),
                     Text(
-                      this.categoria!,
-                      style: TextStyle(fontSize: 12),
+                      categoria!,
+                      style: const TextStyle(fontSize: 12),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10.0,
                     ),
-                    Icon(Icons.date_range),
+                    const Icon(Icons.date_range),
                     Text(
                       date!,
-                      style: TextStyle(fontSize: 12),
+                      style: const TextStyle(fontSize: 12),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10.0,
                     ),
                     InkWell(
@@ -67,23 +67,23 @@ class MancheteScreen extends StatelessWidget {
                                   'Eu li a matéria, $titulo, no App da Arquidiocese de Maceió $link')
                             },
                         child: Row(
-                          children: [Icon(Icons.share), Text("Compartilhar")],
+                          children: const [Icon(Icons.share), Text("Compartilhar")],
                         )),
                   ],
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
-                    margin: EdgeInsets.all(5),
+                    margin: const EdgeInsets.all(5),
                     child: Text(
                       titulo!,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 16.0, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Column(
                     children: [
                       Html(
@@ -96,10 +96,10 @@ class MancheteScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 25.0),
+            padding: const EdgeInsets.only(top: 25.0),
             child: IconButton(
                 onPressed: () => Navigator.pop(context),
-                icon: Icon(Icons.arrow_back_ios),
+                icon: const Icon(Icons.arrow_back_ios),
                 color: yellowAccenture),
           )
         ],

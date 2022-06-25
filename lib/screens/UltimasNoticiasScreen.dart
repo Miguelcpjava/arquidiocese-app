@@ -3,8 +3,6 @@ import 'package:arquidiocese_maceio_app/models/Noticias.dart';
 import 'package:arquidiocese_maceio_app/screens/LoadWidget.dart';
 import 'package:arquidiocese_maceio_app/screens/Noticias/Manchete.dart';
 import 'package:arquidiocese_maceio_app/services/NewsService.dart';
-import 'package:arquidiocese_maceio_app/widgets/AppBarWidget.dart';
-import 'package:arquidiocese_maceio_app/widgets/CustomAlertDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:webfeed/webfeed.dart';
@@ -17,9 +15,9 @@ class UltimasNoticiasScreen extends StatefulWidget {
 }
 
 class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
-  List<Noticia> _noticias = [];
+  final List<Noticia> _noticias = [];
   late bool loading;
-  NewsService newsService = new NewsService();
+  NewsService newsService = NewsService();
 
   @override
   void initState() {
@@ -68,7 +66,7 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
         fit: StackFit.expand,
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: darkBlue,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30.0),
@@ -80,30 +78,30 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: EdgeInsets.only(top: 25.0),
+                    padding: const EdgeInsets.only(top: 25.0),
                     child: IconButton(
                         onPressed: () => Navigator.pop(context),
-                        icon: Icon(Icons.arrow_back_ios),
+                        icon: const Icon(Icons.arrow_back_ios),
                         color: yellowAccenture),
                   ),
                 ),
-                Center(
+                const Center(
                   child: Icon(
                     Icons.newspaper,
                     color: Colors.white,
                     size: 100,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text("Últimas Noticias",
+                const Text("Últimas Noticias",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                         decoration: TextDecoration.none)),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Expanded(
@@ -113,7 +111,7 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
                           onRefresh: getListaDeNoticias,
                           child: Container(
                             height: double.infinity,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(30.0),
@@ -160,7 +158,7 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
                                                 _noticias[index].image != null
                                                     ? NetworkImage(
                                                         _noticias[index].image)
-                                                    : NetworkImage(
+                                                    : const NetworkImage(
                                                         "assets/img/ImageNA.png",
                                                       ),
                                           ),

@@ -9,7 +9,7 @@ List<Menu> menus = [
       height: 100.0,
       icon: Icons.newspaper,
       title: "Últimas Noticias",
-      widget: UltimasNoticiasScreen()),
+      widget: const UltimasNoticiasScreen()),
   Menu(
       height: 100.0,
       icon: Icons.keyboard_voice_sharp,
