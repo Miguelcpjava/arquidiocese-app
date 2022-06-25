@@ -15,6 +15,11 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# A versão da aplicação é composta por VersionName = X.X.X + VersionCode = 1
+# in pubspec.yml version: 1.0.0+1
+#change to version: 1.0.0+2
+#flutter build ios --release-name --release-number will update version in ios
+#flutter pub get && flutter run will update version for android
 version: 1.0.0+1
 
 environment:
