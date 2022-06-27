@@ -1,5 +1,5 @@
-import 'package:arquidiocese_maceio_app/screens/SplashScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:arquidiocese_maceio_app/src/screens/SplashScreen.dart';
 
 void main() {
   runApp(MyApp());
