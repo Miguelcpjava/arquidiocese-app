@@ -7,6 +7,7 @@ class Paroquia {
   String? whatsParoquia;
   String? enderecoParoquia;
   String? bairroParoquia;
+  String? canalParoquia;
 
   Paroquia(
       {this.nomeParoquia,
@@ -16,5 +17,6 @@ class Paroquia {
       this.whatsParoquia,
       this.enderecoParoquia,
       this.bairroParoquia,
-      this.nomeParoco});
+      this.nomeParoco,
+      this.canalParoquia});
 }

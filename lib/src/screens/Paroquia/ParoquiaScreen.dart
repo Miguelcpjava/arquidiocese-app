@@ -1,3 +1,4 @@
+import 'package:arquidiocese_maceio_app/src/data/Constants.dart';
 import 'package:arquidiocese_maceio_app/src/data/DataModel.dart';
 import 'package:arquidiocese_maceio_app/src/models/Paroquia.dart';
 import 'package:arquidiocese_maceio_app/src/screens/Paroquia/ParoquiaDetalheScreen.dart';
@@ -42,54 +43,51 @@ class _ParoquiaScreenState extends State<ParoquiaScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Paróquias"),
-        centerTitle: true,
-        backgroundColor: const Color.fromRGBO(5, 31, 53, .5),
-      ),
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                onChanged: (value) {
-                  procurarPorBairro(value);
-                },
-                controller: editingController,
-                decoration: const InputDecoration(
-                    labelText: "Procurar",
-                    hintText: "Procurar",
-                    prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(25.0)))),
-              ),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              color: darkBlue,
             ),
-            Expanded(
-                child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: listaOriginal.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  leading: const CircleAvatar(
-                    backgroundImage: AssetImage("assets/img/igreja.png"),
-                  ),
-                  title: Text(listaOriginal[index].nomeParoquia!),
-                  subtitle: Text(listaOriginal[index].bairroParoquia!),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ParoquiaDetalhe(
-                                  paroquia: listaOriginal[index],
-                                )));
-                  },
-                );
-              },
-            ))
-          ],
-        ),
+          ),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 25.0),
+                  child: IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.arrow_back_ios),
+                      color: yellowAccenture),
+                ),
+              ),
+              const Center(
+                child: Icon(
+                  Icons.church,
+                  color: Colors.white,
+                  size: 100,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text("Paróquias",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      decoration: TextDecoration.none)),
+              const SizedBox(
+                height: 15,
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

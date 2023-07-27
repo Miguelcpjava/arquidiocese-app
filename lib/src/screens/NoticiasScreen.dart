@@ -55,9 +55,11 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
 
     for (RssItem item in items) {
       numeroMaximoNoticia = _noticias.length > 6 ? false : true;
+      int index = item.content!.images.length;
+      debugPrint("Quantidade de imagens: $index");
       Noticia _noticia = Noticia(
           title: item.title,
-          image: item.content?.images.last,
+          image: index > 0 ? item.content?.images.last : "sem-imagem",
           date: item.pubDate,
           content: item.content?.value,
           link: item.link,
@@ -101,9 +103,6 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
           Container(
             decoration: const BoxDecoration(
               color: darkBlue,
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(30.0),
-                  bottomRight: Radius.circular(30.0)),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -185,30 +184,29 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
                                 itemCount: 6,
                                 itemBuilder:
                                     (BuildContext buildContext, int index) {
-                                  return Container(
-                                    child: ListTile(
-                                      onTap: () => newsService
-                                          .getLaunchUrl(_noticias[index].link),
-                                      title: Text(_noticias[index].title!),
-                                      subtitle: Text('Publicado em ' +
-                                          DateFormat("dd/MM/yyyy")
-                                              .format(_noticias[index].date)),
-                                      leading: Container(
-                                        width: 70.0,
-                                        height: 70.0,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image:
-                                                _noticias[index].image != null
-                                                    ? NetworkImage(
-                                                        _noticias[index].image)
-                                                    : const NetworkImage(
-                                                        "assets/img/ImageNA.png",
-                                                      ),
-                                          ),
+                                  return ListTile(
+                                    onTap: () => newsService
+                                        .getLaunchUrl(_noticias[index].link),
+                                    title: Text(_noticias[index].title!),
+                                    subtitle: Text('Publicado em ' +
+                                        DateFormat("dd/MM/yyyy")
+                                            .format(_noticias[index].date)),
+                                    leading: Container(
+                                      width: 70.0,
+                                      height: 70.0,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: _noticias[index].image !=
+                                                  "sem-imagem"
+                                              ? NetworkImage(_noticias[index]
+                                                  .image
+                                                  .toString())
+                                              : const AssetImage(
+                                                      "assets/img/ImageNA.png")
+                                                  as ImageProvider,
                                         ),
                                       ),
                                     ),

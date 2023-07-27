@@ -43,9 +43,10 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
 
     for (RssItem item in items) {
       numeroMaximoNoticia = _noticias.length > 21 ? false : true;
+      int index = item.content!.images.length;
       Noticia _noticia = Noticia(
           title: item.title,
-          image: item.content?.images.last,
+          image: index > 0 ? item.content!.images.last : "sem-imagem",
           date: item.pubDate,
           content: item.content?.value,
           link: item.link,
@@ -67,9 +68,6 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
           Container(
             decoration: const BoxDecoration(
               color: darkBlue,
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(30.0),
-                  bottomRight: Radius.circular(30.0)),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -141,7 +139,13 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
                                           ),
                                         ),
                                       ),
-                                      title: Text(_noticias[index].title!),
+                                      title: _noticias[index].title!.length >
+                                              100
+                                          ? Text(_noticias[index].title!,
+                                              overflow: TextOverflow.ellipsis)
+                                          : Text(
+                                              _noticias[index].title!,
+                                            ),
                                       subtitle: Text('Publicado em ' +
                                           DateFormat("dd/MM/yyyy")
                                               .format(_noticias[index].date)),
@@ -153,13 +157,14 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
                                               BorderRadius.circular(10.0),
                                           image: DecorationImage(
                                             fit: BoxFit.cover,
-                                            image:
-                                                _noticias[index].image != null
-                                                    ? NetworkImage(
-                                                        _noticias[index].image)
-                                                    : const NetworkImage(
-                                                        "assets/img/ImageNA.png",
-                                                      ),
+                                            image: _noticias[index].image !=
+                                                    "sem-imagem"
+                                                ? NetworkImage(_noticias[index]
+                                                    .image
+                                                    .toString())
+                                                : const AssetImage(
+                                                        "assets/img/ImageNA.png")
+                                                    as ImageProvider,
                                           ),
                                         ),
                                       ),

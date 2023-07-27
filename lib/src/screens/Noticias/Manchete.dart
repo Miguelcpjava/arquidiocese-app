@@ -32,18 +32,21 @@ class MancheteScreen extends StatelessWidget {
         children: [
           SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ClipRect(
                   child: Image.network(
                     image!,
                     fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: 200.0,
                   ),
                 ),
                 const SizedBox(
                   height: 5.0,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Icon(Icons.tag),
                     Text(
@@ -64,7 +67,7 @@ class MancheteScreen extends StatelessWidget {
                     InkWell(
                         onTap: () => {
                               Share.share(
-                                  'Eu li a matéria, $titulo, no App da Arquidiocese de Maceió $link')
+                                  'Eu li a matéria: $titulo, no App da Arquidiocese de Maceió $link')
                             },
                         child: Row(
                           children: const [
@@ -74,14 +77,20 @@ class MancheteScreen extends StatelessWidget {
                         )),
                   ],
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
-                    margin: const EdgeInsets.all(5),
+                    margin: const EdgeInsets.all(8),
                     child: Text(
                       titulo!,
+                      textAlign: TextAlign.justify,
                       style: const TextStyle(
-                          fontSize: 16.0, fontWeight: FontWeight.w500),
+                        fontSize: 17.0,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),
