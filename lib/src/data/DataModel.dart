@@ -1,105 +1,37 @@
+import 'package:arquidiocese_maceio_app/src/models/Bairro.dart';
+import 'package:arquidiocese_maceio_app/src/models/Igreja.dart';
+import 'package:arquidiocese_maceio_app/src/models/Missa.dart';
 import 'package:arquidiocese_maceio_app/src/models/Paroquia.dart';
 
+List<Bairro> bairros = [
+  Bairro(
+    nome: "Serraria",
+  ),
+  Bairro(nome: "Gruta de Lourdes")
+];
+
+List<Igreja> igrejas = [
+  Igreja(
+      endereco: "R. Cedro, 27",
+      vigario: "Mons. Rubião",
+      festa: "11/02",
+      homenageado: "Nossa Senhora de Lourdes",
+      historia: "Texto Grande",
+      missa: Missa(
+          segunda: "Não há horário",
+          terca: "17h",
+          quarta: "17h",
+          quinta: "6:30",
+          sexta: "17h (exceto a primeira sexta, 19h)",
+          sabado: "19h",
+          domingo: "7:30 e 19h")),
+];
 List<Paroquia> paroquias = [
   Paroquia(
-    nomeParoquia: "Nossa Senhora da Gruta de Lourdes",
-    bairroParoquia: "Gruta de Lourdes",
-    enderecoParoquia: "R. Cedro, 27",
-    descricaoParoquia:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur, est vel faucibus vehicula, eros nibh egestas sem, vitae maximus tellus dolor a mi. Morbi augue lorem, imperdiet non convallis in, fermentum nec metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque sit amet eleifend turpis. Curabitur iaculis fringilla volutpat.",
-    imgParoquia: "",
-    telefoneParoquia: "(82)3333-3333",
-    whatsParoquia: "(82)3333-3333",
-    nomeParoco: "Mons. Rubião",
-  ),
-  Paroquia(
-    nomeParoquia: "Nossa Senhora do Pérpetuo Socorro",
-    bairroParoquia: "Tabuleiro Novo",
-    enderecoParoquia: "",
-    descricaoParoquia: "",
-    imgParoquia: "",
-    telefoneParoquia: "(82)3333-3333",
-    whatsParoquia: "(82)3333-3333",
-    nomeParoco: "Pe. Jerônimo",
-  ),
-  Paroquia(
-    nomeParoquia: "Sta Terezinha do Menino Jesus",
-    bairroParoquia: "Serraria",
-    enderecoParoquia: "",
-    descricaoParoquia: "",
-    imgParoquia: "",
-    telefoneParoquia: "(82)3333-3333",
-    whatsParoquia: "(82)3333-3333",
-    nomeParoco: "Mons. José Augusto",
-  ),
-  Paroquia(
-    nomeParoquia: "Sta Catarina Labouré",
-    bairroParoquia: "Aldebaran",
-    enderecoParoquia: "",
-    descricaoParoquia: "",
-    imgParoquia: "",
-    telefoneParoquia: "(82)3333-3333",
-    whatsParoquia: "(82)3333-3333",
-    nomeParoco: "Con. João Neto",
-  ),
-  Paroquia(
-    nomeParoquia: "Divino Espírito Santo",
-    bairroParoquia: "Jatiúca",
-    enderecoParoquia: "",
-    descricaoParoquia: "",
-    imgParoquia: "",
-    telefoneParoquia: "(82)3333-3333",
-    whatsParoquia: "(82)3333-3333",
-    nomeParoco: "Pe. ",
-  ),
-  Paroquia(
-    nomeParoquia: "São Pedro Apóstolo",
-    bairroParoquia: "Ponta verde",
-    enderecoParoquia: "",
-    descricaoParoquia: "",
-    imgParoquia: "",
-    telefoneParoquia: "(82)3333-3333",
-    whatsParoquia: "(82)3333-3333",
-    nomeParoco: "Pe. ",
-  ),
-  Paroquia(
-    nomeParoquia: "Nossa Senhora da Rosa Mística",
-    bairroParoquia: "Mangabeiras",
-    enderecoParoquia: "",
-    descricaoParoquia: "",
-    imgParoquia: "",
-    telefoneParoquia: "(82)3333-3333",
-    whatsParoquia: "(82)3333-3333",
-    nomeParoco: "Pe. ",
-  ),
-  Paroquia(
-    nomeParoquia: "Sagrado Coração de Jesus",
-    bairroParoquia: "João Sampaio",
-    enderecoParoquia: "",
-    descricaoParoquia: "",
-    imgParoquia: "",
-    telefoneParoquia: "",
-    whatsParoquia: "",
-    nomeParoco: "Pe. ",
-  ),
-  Paroquia(
-    nomeParoquia: "Nossa Senhora das Dores",
-    bairroParoquia: "Santa Lúcia",
-    enderecoParoquia: "",
-    descricaoParoquia: "",
-    imgParoquia: "",
-    telefoneParoquia: "",
-    whatsParoquia: "",
-    nomeParoco: "Pe. ",
-  ),
-  Paroquia(
-    nomeParoquia: "Sagrada Família",
-    bairroParoquia: "Jacarecica",
-    enderecoParoquia: "",
-    descricaoParoquia: "",
-    imgParoquia: "",
-    telefoneParoquia: "",
-    whatsParoquia: "",
-    nomeParoco: "Pe. ",
-  ),
+      nome: "Nossa Senhora da Gruta de Lourdes",
+      instagram: "",
+      youtube: "",
+      telefone: "(82)3333-3333",
+      whatsapp: "(82)3333-3333",
+      igreja: igrejas)
 ];

@@ -2,6 +2,7 @@ import 'package:arquidiocese_maceio_app/src/data/Constants.dart';
 import 'package:arquidiocese_maceio_app/src/models/Menu.dart';
 import 'package:arquidiocese_maceio_app/src/screens/Paroquia/ParoquiaScreen.dart';
 import 'package:arquidiocese_maceio_app/src/screens/UltimasNoticiasScreen.dart';
+import 'package:arquidiocese_maceio_app/src/screens/Videos/VideosArquidioceseScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -25,7 +26,7 @@ List<Menu> menus = [
       height: 100.0,
       icon: Icons.video_library_outlined,
       title: "Videos",
-      widget: Container()),
+      widget: const VideoScreen()),
   Menu(
       height: 100.0,
       icon: FontAwesomeIcons.handsPraying,

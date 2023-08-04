@@ -107,7 +107,8 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
                       : RefreshIndicator(
                           onRefresh: getListaDeNoticias,
                           child: Container(
-                            height: size.height,
+                            padding: const EdgeInsets.only(top: 4.0),
+                            height: double.infinity,
                             decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.only(
@@ -118,54 +119,48 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
                                 itemCount: _noticias.length,
                                 itemBuilder:
                                     (BuildContext buildContext, int index) {
-                                  return Container(
-                                    child: ListTile(
-                                      onTap: () => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => MancheteScreen(
-                                            link: _noticias[index].link,
-                                            titulo: _noticias[index].title,
-                                            date: DateFormat("dd/MM/yyyy")
-                                                .format(_noticias[index].date),
-                                            image: _noticias[index]
-                                                .image
-                                                .toString(),
-                                            categoria:
-                                                _noticias[index].category,
-                                            subtitulo:
-                                                _noticias[index].subtitle,
-                                            conteudo: _noticias[index].content,
-                                          ),
+                                  return ListTile(
+                                    onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => MancheteScreen(
+                                          link: _noticias[index].link,
+                                          titulo: _noticias[index].title,
+                                          date: DateFormat("dd/MM/yyyy")
+                                              .format(_noticias[index].date),
+                                          image:
+                                              _noticias[index].image.toString(),
+                                          categoria: _noticias[index].category,
+                                          subtitulo: _noticias[index].subtitle,
+                                          conteudo: _noticias[index].content,
                                         ),
                                       ),
-                                      title: _noticias[index].title!.length >
-                                              100
-                                          ? Text(_noticias[index].title!,
-                                              overflow: TextOverflow.ellipsis)
-                                          : Text(
-                                              _noticias[index].title!,
-                                            ),
-                                      subtitle: Text('Publicado em ' +
-                                          DateFormat("dd/MM/yyyy")
-                                              .format(_noticias[index].date)),
-                                      leading: Container(
-                                        width: 90.0,
-                                        height: 90.0,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: _noticias[index].image !=
-                                                    "sem-imagem"
-                                                ? NetworkImage(_noticias[index]
-                                                    .image
-                                                    .toString())
-                                                : const AssetImage(
-                                                        "assets/img/ImageNA.png")
-                                                    as ImageProvider,
+                                    ),
+                                    title: _noticias[index].title!.length > 100
+                                        ? Text(_noticias[index].title!,
+                                            overflow: TextOverflow.ellipsis)
+                                        : Text(
+                                            _noticias[index].title!,
                                           ),
+                                    subtitle: Text('Publicado em ' +
+                                        DateFormat("dd/MM/yyyy")
+                                            .format(_noticias[index].date)),
+                                    leading: Container(
+                                      width: 90.0,
+                                      height: 90.0,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: _noticias[index].image !=
+                                                  "sem-imagem"
+                                              ? NetworkImage(_noticias[index]
+                                                  .image
+                                                  .toString())
+                                              : const AssetImage(
+                                                      "assets/img/ImageNA.png")
+                                                  as ImageProvider,
                                         ),
                                       ),
                                     ),

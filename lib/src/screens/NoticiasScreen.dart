@@ -2,6 +2,7 @@ import 'package:arquidiocese_maceio_app/src/data/Constants.dart';
 import 'package:arquidiocese_maceio_app/src/data/DataMenu.dart';
 import 'package:arquidiocese_maceio_app/src/models/Noticias.dart';
 import 'package:arquidiocese_maceio_app/src/screens/LoadWidget.dart';
+import 'package:arquidiocese_maceio_app/src/screens/Noticias/Manchete.dart';
 import 'package:arquidiocese_maceio_app/src/services/NewsService.dart';
 import 'package:arquidiocese_maceio_app/src/widgets/CardsMenu.dart';
 import 'package:flutter/material.dart';
@@ -173,7 +174,8 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
                       : RefreshIndicator(
                           onRefresh: getListaDeNoticias,
                           child: Container(
-                            height: 500,
+                            padding: const EdgeInsets.only(top: 4.0),
+                            height: double.infinity,
                             decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.only(
@@ -185,8 +187,22 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
                                 itemBuilder:
                                     (BuildContext buildContext, int index) {
                                   return ListTile(
-                                    onTap: () => newsService
-                                        .getLaunchUrl(_noticias[index].link),
+                                    onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => MancheteScreen(
+                                          link: _noticias[index].link,
+                                          titulo: _noticias[index].title,
+                                          date: DateFormat("dd/MM/yyyy")
+                                              .format(_noticias[index].date),
+                                          image:
+                                              _noticias[index].image.toString(),
+                                          categoria: _noticias[index].category,
+                                          subtitulo: _noticias[index].subtitle,
+                                          conteudo: _noticias[index].content,
+                                        ),
+                                      ),
+                                    ),
                                     title: Text(_noticias[index].title!),
                                     subtitle: Text('Publicado em ' +
                                         DateFormat("dd/MM/yyyy")

@@ -11,7 +11,7 @@ class ParoquiaDetalhe extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text(paroquia.nomeParoquia!),
+        title: Text(paroquia.nome!),
         backgroundColor: const Color.fromRGBO(5, 31, 53, .5),
         actions: const [],
         leading: IconButton(
@@ -26,7 +26,7 @@ class ParoquiaDetalhe extends StatelessWidget {
           SizedBox(
             height: size.height * 0.4,
             child: Hero(
-              tag: paroquia.nomeParoquia!,
+              tag: paroquia.nome!,
               child: Image.asset(
                 "assets/img/ImageNA.png",
                 height: size.height * 0.4,
@@ -52,7 +52,7 @@ class ParoquiaDetalhe extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    paroquia.nomeParoquia!,
+                    paroquia.nome!,
                     style: const TextStyle(
                         fontSize: 20, fontWeight: FontWeight.bold),
                   ),
@@ -63,12 +63,12 @@ class ParoquiaDetalhe extends StatelessWidget {
                     children: <Widget>[
                       const Icon(Icons.location_on),
                       Text(
-                        paroquia.bairroParoquia!,
+                        paroquia.igreja!.first.endereco!,
                         style: TextStyle(color: Colors.grey[500]),
                       ),
                       const Spacer(),
                       const Icon(Icons.phone),
-                      Text(paroquia.telefoneParoquia!)
+                      Text(paroquia.telefone!)
                     ],
                   ),
                   const SizedBox(
@@ -80,20 +80,20 @@ class ParoquiaDetalhe extends StatelessWidget {
                         "assets/img/padre-icon.png",
                         width: 24,
                       ),
-                      Text(paroquia.nomeParoco!),
+                      Text(paroquia.igreja!.first.vigario!),
                       const Spacer(),
                       Image.asset(
                         "assets/img/whatsapp-icone-1.png",
                         width: 24,
                       ),
-                      Text(paroquia.whatsParoquia!)
+                      Text(paroquia.whatsapp!)
                     ],
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   Text(
-                    paroquia.descricaoParoquia!,
+                    paroquia.igreja!.first.historia!,
                     textAlign: TextAlign.justify,
                   ),
                 ],
