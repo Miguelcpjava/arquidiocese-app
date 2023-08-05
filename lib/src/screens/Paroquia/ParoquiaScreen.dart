@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:arquidiocese_maceio_app/src/data/Constants.dart';
 import 'package:arquidiocese_maceio_app/src/data/DataModel.dart';
+import 'package:arquidiocese_maceio_app/src/models/Bairro.dart';
 import 'package:arquidiocese_maceio_app/src/models/Diocese.dart';
 import 'package:arquidiocese_maceio_app/src/models/Igreja.dart';
 import 'package:arquidiocese_maceio_app/src/models/Paroquia.dart';
@@ -18,6 +19,7 @@ class _ParoquiaScreenState extends State<ParoquiaScreen> {
   TextEditingController editingController = TextEditingController();
   List<Igreja> listaOriginal = [];
   Diocese arquidiocese = Diocese();
+  Bairro bairroEscolhido = Bairro();
 
   @override
   void initState() {
@@ -34,7 +36,16 @@ class _ParoquiaScreenState extends State<ParoquiaScreen> {
   Future<void> fetchDiocese() async {
     final fetched = await getData();
     arquidiocese = fetched;
-    debugPrint("Diocese achada: ${arquidiocese.diocese}");
+    initializer();
+    debugPrint("Diocese achada de ${arquidiocese.cidade?.nome}");
+  }
+
+  void initializer() {
+    for (var distrito in arquidiocese.cidade!.bairro!) {
+      for (var igr in distrito.paroquia!.igreja!) {
+        listaOriginal.add(igr);
+      }
+    }
   }
 
   void procurarPorBairro(String bairro) {
@@ -43,6 +54,7 @@ class _ParoquiaScreenState extends State<ParoquiaScreen> {
       listaResultado.clear();
       for (var item in arquidiocese.cidade!.bairro!) {
         if (item.nome!.contains(bairro)) {
+          bairroEscolhido = item;
           for (var index in item.paroquia!.igreja!) {
             listaResultado.add(index);
           }
@@ -107,6 +119,62 @@ class _ParoquiaScreenState extends State<ParoquiaScreen> {
               const SizedBox(
                 height: 15,
               ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  onChanged: (value) {
+                    procurarPorBairro(value);
+                  },
+                  controller: editingController,
+                  decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                          borderSide:
+                              BorderSide(width: 3, color: Colors.white)),
+                      labelText: "Procurar",
+                      hintText: "Procurar",
+                      prefixIcon: Icon(Icons.search),
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(width: 3, color: Colors.white),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(25.0)))),
+                ),
+              ),
+              Expanded(
+                  child: Container(
+                padding: const EdgeInsets.only(top: 4.0),
+                height: double.infinity,
+                decoration: const BoxDecoration(
+                    color: darkLightBlue,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30.0),
+                        topRight: Radius.circular(30.0))),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: listaOriginal.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      hoverColor: Colors.grey[400],
+                      tileColor: Colors.white,
+                      leading: CircleAvatar(
+                        backgroundImage: AssetImage("assets/img/igreja.png"),
+                      ),
+                      title: Text(listaOriginal[index].homenageado!),
+                      subtitle: Text(listaOriginal[index].endereco!),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ParoquiaDetalhe(
+                                      paroquia: bairroEscolhido.paroquia!,
+                                      igreja: bairroEscolhido
+                                          .paroquia!.igreja![index],
+                                    )));
+                      },
+                    );
+                  },
+                ),
+              ))
             ],
           ),
         ],

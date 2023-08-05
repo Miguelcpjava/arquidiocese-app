@@ -1,10 +1,15 @@
+import 'package:arquidiocese_maceio_app/src/data/Constants.dart';
+import 'package:arquidiocese_maceio_app/src/models/Igreja.dart';
 import 'package:arquidiocese_maceio_app/src/models/Paroquia.dart';
 import 'package:flutter/material.dart';
 
 class ParoquiaDetalhe extends StatelessWidget {
   final Paroquia paroquia;
+  final Igreja igreja;
 
-  const ParoquiaDetalhe({Key? key, required this.paroquia}) : super(key: key);
+  const ParoquiaDetalhe(
+      {Key? key, required this.paroquia, required this.igreja})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +71,13 @@ class ParoquiaDetalhe extends StatelessWidget {
                         paroquia.igreja!.first.endereco!,
                         style: TextStyle(color: Colors.grey[500]),
                       ),
-                      const Spacer(),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    children: [
                       const Icon(Icons.phone),
                       Text(paroquia.telefone!)
                     ],
@@ -82,6 +93,13 @@ class ParoquiaDetalhe extends StatelessWidget {
                       ),
                       Text(paroquia.igreja!.first.vigario!),
                       const Spacer(),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
                       Image.asset(
                         "assets/img/whatsapp-icone-1.png",
                         width: 24,
@@ -89,13 +107,20 @@ class ParoquiaDetalhe extends StatelessWidget {
                       Text(paroquia.whatsapp!)
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: 15,
                   ),
-                  Text(
-                    paroquia.igreja!.first.historia!,
-                    textAlign: TextAlign.justify,
+                  Divider(
+                    color: darkBlue,
                   ),
+                  const Text("Horários das Missas"),
+                  Text("Segunda: ${igreja.missa!.segunda}"),
+                  Text("Terça: ${igreja.missa!.terca}"),
+                  Text("Quarta: ${igreja.missa!.quarta}"),
+                  Text("Quinta: ${igreja.missa!.quinta}"),
+                  Text("Sexta: ${igreja.missa!.sexta}"),
+                  Text("Sabado: ${igreja.missa!.sabado}"),
+                  Text("Domingo: ${igreja.missa!.domingo}"),
                 ],
               ),
             ),
