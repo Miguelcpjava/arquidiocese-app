@@ -20,7 +20,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 #change to version: 1.0.0+2
 #flutter build ios --release-name --release-number will update version in ios
 #flutter pub get && flutter run will update version for android
-version: 1.0.1+5
+version: 1.0.1+6
 
 environment:
   sdk: ">=2.16.2 <3.0.0"

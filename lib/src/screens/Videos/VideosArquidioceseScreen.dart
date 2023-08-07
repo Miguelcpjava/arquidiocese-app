@@ -15,7 +15,7 @@ class VideoScreen extends StatefulWidget {
 
 class _VideoScreenState extends State<VideoScreen> {
   late bool loading;
-  static const String _youtube = "AIzaSyAdlklWyWoBhwoEbCM6nsMtf5kJ4qy5g5E";
+  static const String _youtube = "teste";
   YoutubeAPI ytApi = YoutubeAPI(_youtube, maxResults: 15, type: "channel");
   List<YouTubeVideo> videoResult = [];
   DataTimeFormarter formatador = DataTimeFormarter();
