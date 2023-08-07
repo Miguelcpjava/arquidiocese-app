@@ -1,6 +1,7 @@
 import 'package:arquidiocese_maceio_app/src/models/Missa.dart';
 
 class Igreja {
+  String? nome;
   String? homenageado;
   String? vigario;
   String? festa;
@@ -9,7 +10,8 @@ class Igreja {
   Missa? missa;
 
   Igreja(
-      {this.homenageado,
+      {this.nome,
+      this.homenageado,
       this.vigario,
       this.festa,
       this.historia,
@@ -17,6 +19,7 @@ class Igreja {
       this.endereco});
 
   Igreja.fromJson(Map<String, dynamic> json) {
+    nome = json['nome'];
     homenageado = json['homenageado'];
     vigario = json['vigario'];
     festa = json['festa'];
@@ -27,6 +30,7 @@ class Igreja {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['nome'] = this.nome;
     data['homenageado'] = this.homenageado;
     data['vigario'] = this.vigario;
     data['festa'] = this.festa;

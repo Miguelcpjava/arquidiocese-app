@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 const Color darkBlue = Color(0xFF175B9A);
-const Color darkLightBlue = Color(0xFF4682B4);
+const Color darkLightBlue = Color.fromARGB(255, 140, 196, 242);
 const Color yellowAccenture = Color(0XFFF6EF74);
 const String ARQUIDIOCESE_CHANNEL = "@arqdemaceio";
 const IconData church =

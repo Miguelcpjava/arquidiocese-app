@@ -1,11 +1,9 @@
 import 'dart:convert';
 
 import 'package:arquidiocese_maceio_app/src/data/Constants.dart';
-import 'package:arquidiocese_maceio_app/src/data/DataModel.dart';
 import 'package:arquidiocese_maceio_app/src/models/Bairro.dart';
 import 'package:arquidiocese_maceio_app/src/models/Diocese.dart';
 import 'package:arquidiocese_maceio_app/src/models/Igreja.dart';
-import 'package:arquidiocese_maceio_app/src/models/Paroquia.dart';
 import 'package:arquidiocese_maceio_app/src/screens/Paroquia/ParoquiaDetalheScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -41,19 +39,23 @@ class _ParoquiaScreenState extends State<ParoquiaScreen> {
   }
 
   void initializer() {
-    for (var distrito in arquidiocese.cidade!.bairro!) {
-      for (var igr in distrito.paroquia!.igreja!) {
-        listaOriginal.add(igr);
+    setState(() {
+      debugPrint("Inicializando com ${arquidiocese.cidade!.bairro!.length}");
+      for (var distrito in arquidiocese.cidade!.bairro!) {
+        for (var igr in distrito.paroquia!.igreja!) {
+          listaOriginal.add(igr);
+        }
       }
-    }
+    });
   }
 
   void procurarPorBairro(String bairro) {
+    debugPrint("Procurando por bairro...");
     List<Igreja> listaResultado = [];
     if (bairro.isNotEmpty) {
       listaResultado.clear();
       for (var item in arquidiocese.cidade!.bairro!) {
-        if (item.nome!.contains(bairro)) {
+        if (item.nome!.toLowerCase().contains(bairro.toLowerCase())) {
           bairroEscolhido = item;
           for (var index in item.paroquia!.igreja!) {
             listaResultado.add(index);
@@ -127,6 +129,13 @@ class _ParoquiaScreenState extends State<ParoquiaScreen> {
                   },
                   controller: editingController,
                   decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      labelStyle: TextStyle(
+                        color: Colors.white,
+                      ),
+                      hintStyle: TextStyle(color: Colors.white),
+                      prefixIconColor: Colors.white,
+                      focusColor: Colors.white,
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(25.0)),
                           borderSide:
@@ -156,19 +165,25 @@ class _ParoquiaScreenState extends State<ParoquiaScreen> {
                     return ListTile(
                       hoverColor: Colors.grey[400],
                       tileColor: Colors.white,
-                      leading: CircleAvatar(
+                      leading: const CircleAvatar(
                         backgroundImage: AssetImage("assets/img/igreja.png"),
                       ),
-                      title: Text(listaOriginal[index].homenageado!),
+                      title: Text(listaOriginal[index].nome!),
                       subtitle: Text(listaOriginal[index].endereco!),
                       onTap: () {
+                        var escolha = bairroEscolhido.nome != null
+                            ? bairroEscolhido.paroquia!
+                            : arquidiocese.cidade!.bairro![index].paroquia!;
+                        var igrejaIndex = escolha.igreja!.length;
+                        var igrejaEscolhida = bairroEscolhido.nome != null
+                            ? igrejaIndex - 1
+                            : index;
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => ParoquiaDetalhe(
-                                      paroquia: bairroEscolhido.paroquia!,
-                                      igreja: bairroEscolhido
-                                          .paroquia!.igreja![index],
+                                      paroquia: escolha,
+                                      igreja: listaOriginal[igrejaEscolhida],
                                     )));
                       },
                     );

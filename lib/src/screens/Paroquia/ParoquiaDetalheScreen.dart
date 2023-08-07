@@ -17,7 +17,7 @@ class ParoquiaDetalhe extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(paroquia.nome!),
-        backgroundColor: const Color.fromRGBO(5, 31, 53, .5),
+        backgroundColor: darkBlue,
         actions: const [],
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -57,7 +57,7 @@ class ParoquiaDetalhe extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    paroquia.nome!,
+                    igreja.nome!,
                     style: const TextStyle(
                         fontSize: 20, fontWeight: FontWeight.bold),
                   ),
@@ -68,7 +68,7 @@ class ParoquiaDetalhe extends StatelessWidget {
                     children: <Widget>[
                       const Icon(Icons.location_on),
                       Text(
-                        paroquia.igreja!.first.endereco!,
+                        igreja.endereco!,
                         style: TextStyle(color: Colors.grey[500]),
                       ),
                     ],
@@ -91,7 +91,7 @@ class ParoquiaDetalhe extends StatelessWidget {
                         "assets/img/padre-icon.png",
                         width: 24,
                       ),
-                      Text(paroquia.igreja!.first.vigario!),
+                      Text(igreja.vigario!),
                       const Spacer(),
                     ],
                   ),

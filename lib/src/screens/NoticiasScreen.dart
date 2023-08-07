@@ -57,7 +57,6 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
     for (RssItem item in items) {
       numeroMaximoNoticia = _noticias.length > 6 ? false : true;
       int index = item.content!.images.length;
-      debugPrint("Quantidade de imagens: $index");
       Noticia _noticia = Noticia(
           title: item.title,
           image: index > 0 ? item.content?.images.last : "sem-imagem",

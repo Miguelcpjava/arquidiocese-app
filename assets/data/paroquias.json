@@ -12,14 +12,15 @@
                     "telefone": "(82) 3358-9103",
                     "youtube": "https",
                     "instagram": "https",
-                    "fundacao": 1987,
+                    "fundacao": 1983,
                     "igreja": [
                         {
+                            "nome": "Nossa Senhora da Gruta de Lourdes",
                             "homenageado": "Nossa Senhora de Lourdes",
                             "vigario": "Monsenhor Rubião Lins Peixoto",
                             "festa": "11/02",
                             "historia": "Em Manutenção",
-                            "endereco": "Rua Cedro, 27",
+                            "endereco": "Rua Cedro, 27 - Gruta de Lourdes",
                             "missa": {
                                 "segunda": "Não há horário",
                                 "terca": "17h",
@@ -28,6 +29,66 @@
                                 "sexta": "17h (exceto a primeira sexta, 19h)",
                                 "sabado": "19h",
                                 "domingo": "7:30 e 19h"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "nome": "Ouro Preto",
+                "paroquia": {
+                    "nome": "Nossa Senhora da Gruta de Lourdes",
+                    "whatsapp": "(82) 3358-9103",
+                    "telefone": "(82) 3358-9103",
+                    "youtube": "https",
+                    "instagram": "https",
+                    "fundacao": 1983,
+                    "igreja": [
+                        {
+                            "nome": "Capela São Domingos Sávio",
+                            "homenageado": "São Domingos Sávio",
+                            "vigario": "Monsenhor Rubião Lins Peixoto",
+                            "festa": "06/05",
+                            "historia": "Em Manutenção",
+                            "endereco": "R. Santo Antônio, 1-27 - Ouro Preto",
+                            "missa": {
+                                "segunda": "Não informado",
+                                "terca": "19:30",
+                                "quarta": "Não informado",
+                                "quinta": "Não informado",
+                                "sexta": "Não informado",
+                                "sabado": "19:30",
+                                "domingo": "Não informado"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "nome": "Serraria",
+                "paroquia": {
+                    "nome" : "Santa Terezinha do Menino Jesus",
+                    "whatsapp": "(82) 3358-9103",
+                    "telefone": "(82) 3358-9103",
+                    "youtube": "https",
+                    "instagram": "https",
+                    "fundacao": 1983,
+                    "igreja": [
+                        {
+                            "nome": "Capela São Judas Tadeu",
+                            "homenageado": "São Judas Tadeu",
+                            "vigario": "Monsenhor José Augusto",
+                            "festa": "28/10",
+                            "historia": "Em Manutenção",
+                            "endereco": "R. Adolfo Gustavo - Serraria",
+                            "missa": {
+                                "segunda": "Não tem",
+                                "terca": "Não tem",
+                                "quarta": "17h",
+                                "quinta": "Não tem",
+                                "sexta": "17h (só na primera sexta)",
+                                "sabado": "15h (Só no primeiro sábado)",
+                                "domingo": "9:15"
                             }
                         }
                     ]
