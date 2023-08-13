@@ -1,7 +1,10 @@
 import 'package:arquidiocese_maceio_app/src/data/Constants.dart';
+import 'package:arquidiocese_maceio_app/src/models/VideoArq.dart';
 import 'package:arquidiocese_maceio_app/src/screens/LoadWidget.dart';
 import 'package:arquidiocese_maceio_app/src/services/DataTimeService.dart';
-import 'package:arquidiocese_maceio_app/src/share/UrlUtil.dart';
+import 'package:arquidiocese_maceio_app/src/shared/Figura.dart';
+import 'package:arquidiocese_maceio_app/src/shared/FiguraRef.dart';
+import 'package:arquidiocese_maceio_app/src/shared/UrlUtil.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:youtube_api/youtube_api.dart';
@@ -15,9 +18,10 @@ class VideoScreen extends StatefulWidget {
 
 class _VideoScreenState extends State<VideoScreen> {
   late bool loading;
-  static const String _youtube = "teste";
-  YoutubeAPI ytApi = YoutubeAPI(_youtube, maxResults: 15, type: "channel");
+  static const String _youtube = "AIzaSyAubKa_heKhQnahB3YoXt8zHwIPUzItnUg";
+  YoutubeAPI ytApi = YoutubeAPI(_youtube, maxResults: 20, type: "channel");
   List<YouTubeVideo> videoResult = [];
+  List<VideoArq> videosArquidiocese = [];
   DataTimeFormarter formatador = DataTimeFormarter();
 
   @override
@@ -30,13 +34,35 @@ class _VideoScreenState extends State<VideoScreen> {
   }
 
   Future<void> getVideosDaArquidiocese() async {
-    videoResult = await ytApi.search(
-      ARQUIDIOCESE_CHANNEL,
-      order: 'relevance',
-      videoDuration: 'any',
-    );
-    debugPrint("Acessando Video de: ${videoResult.first.channelTitle}");
-    videoResult = await ytApi.nextPage();
+    videoResult = await ytApi.search(ARQUIDIOCESE_CHANNEL);
+    for (var video in videoResult) {
+      videosArquidiocese.add(VideoArq(
+          id: video.id,
+          title: video.title,
+          url: video.url,
+          channelId: video.channelId,
+          channelUrl: video.channelUrl,
+          description: video.description,
+          duration: video.duration,
+          publishedAt: formatador.setStringDataParaDataTime(video.publishedAt!),
+          thumbnail: Figuras(
+              high: FiguraRef(
+                  height: video.thumbnail.high.height,
+                  width: video.thumbnail.high.width,
+                  url: video.thumbnail.high.url),
+              medium: FiguraRef(
+                  height: video.thumbnail.medium.height,
+                  width: video.thumbnail.medium.width,
+                  url: video.thumbnail.medium.url),
+              small: FiguraRef(
+                  height: video.thumbnail.small.height,
+                  width: video.thumbnail.small.width,
+                  url: video.thumbnail.small.url))));
+    }
+    videosArquidiocese
+        .sort(((a, b) => b.publishedAt!.compareTo(a.publishedAt!)));
+
+//    videoResult = await ytApi.nextPage();
     setState(() {
       loading = false;
     });
@@ -99,31 +125,34 @@ class _VideoScreenState extends State<VideoScreen> {
                                     topRight: Radius.circular(30.0))),
                             child: ListView.builder(
                                 shrinkWrap: true,
-                                itemCount: videoResult.length,
+                                itemCount: videosArquidiocese.length,
                                 itemBuilder:
                                     (BuildContext buildContext, int index) {
                                   return ListTile(
-                                    onTap: () => UrlUtils()
-                                        .getLaunchUrl(videoResult[index].url),
-                                    title: videoResult[index].title.length > 100
-                                        ? Text(videoResult[index].title,
+                                    onTap: () => UrlUtils().getLaunchUrl(
+                                        videosArquidiocese[index].url),
+                                    title: videosArquidiocese[index]
+                                                .title
+                                                .length >
+                                            100
+                                        ? Text(videosArquidiocese[index].title,
                                             overflow: TextOverflow.ellipsis)
                                         : Text(
-                                            videoResult[index].title!,
+                                            videosArquidiocese[index].title!,
                                           ),
                                     subtitle: Text(
-                                        'Publicado em ${formatador.getTransformerData(videoResult[index].publishedAt!)}'),
+                                        'Publicado em ${formatador.getTransformadorStringParaData(videosArquidiocese[index].publishedAt!)}'),
                                     leading: Padding(
                                       padding:
                                           const EdgeInsets.only(right: 20.0),
-                                      child: videoResult[index]
-                                              .thumbnail
+                                      child: videosArquidiocese[index]
+                                              .thumbnail!
                                               .small
                                               .url!
                                               .isNotEmpty
                                           ? Image.network(
-                                              videoResult[index]
-                                                      .thumbnail
+                                              videosArquidiocese[index]
+                                                      .thumbnail!
                                                       .small
                                                       .url ??
                                                   '',
