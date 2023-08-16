@@ -3,9 +3,11 @@ class PodCast {
   String? data;
   String? url;
   int? ano;
+  String? programa;
 
   PodCast(
-      {required this.url,
+      {this.programa,
+      required this.url,
       required this.data,
       required this.titulo,
       required this.ano});

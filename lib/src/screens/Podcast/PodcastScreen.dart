@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:arquidiocese_maceio_app/src/data/Constants.dart';
 import 'package:arquidiocese_maceio_app/src/models/PodCast.dart';
 import 'package:arquidiocese_maceio_app/src/screens/LoadWidget.dart';
+import 'package:arquidiocese_maceio_app/src/screens/Podcast/PodcastDetails.dart';
 import 'package:arquidiocese_maceio_app/src/shared/UrlUtil.dart';
 import 'package:chaleno/chaleno.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,7 @@ class _PodcastScreenState extends State<PodcastScreen> {
   }
 
   Future<void> scrapData() async {
+    debugPrint("Inicializando os podcast da Arquidiocese...");
     var response = await Chaleno().load(ARQUIDIOCESE_PODCAST_URL);
     List<Result>? resultado = response?.getElementsByClassName('track');
     for (var index in resultado!) {
@@ -126,8 +128,19 @@ class _PodcastScreenState extends State<PodcastScreen> {
                                       child: ListTile(
                                         dense: true,
                                         selectedColor: darkLightBlue,
-                                        onTap: () => UrlUtils()
-                                            .getLaunchUrl(podcasts[index].url),
+                                        onTap: () => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => PodCastDetailsScreen(
+                                                urlAudio: podcasts[index].url!,
+                                                programa:
+                                                    "Discipulos e Missionários",
+                                                episodio:
+                                                    podcasts[index].titulo!,
+                                                capa:
+                                                    "assets/img/discipulomissionario.jpeg"),
+                                          ),
+                                        ),
                                         title: podcasts[index].titulo!.length >
                                                 100
                                             ? Text(podcasts[index].titulo!,
