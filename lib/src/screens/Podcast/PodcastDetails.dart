@@ -38,7 +38,6 @@ class _PodCastDetailsScreenState extends State<PodCastDetailsScreen> {
   @override
   void initState() {
     super.initState();
-    debugPrint("Url para tocar ${widget.urlAudio}");
     _audioPlayer = AudioPlayer()..setUrl(widget.urlAudio);
   }
 

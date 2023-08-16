@@ -138,7 +138,7 @@ class _VideoScreenState extends State<VideoScreen> {
                                         ? Text(videosArquidiocese[index].title,
                                             overflow: TextOverflow.ellipsis)
                                         : Text(
-                                            videosArquidiocese[index].title!,
+                                            videosArquidiocese[index].title,
                                           ),
                                     subtitle: Text(
                                         'Publicado em ${formatador.getTransformadorStringParaData(videosArquidiocese[index].publishedAt!)}'),
