@@ -1,10 +1,9 @@
-import 'dart:ffi';
+import 'package:html/dom.dart' as html;
 
 import 'package:arquidiocese_maceio_app/src/data/Constants.dart';
 import 'package:arquidiocese_maceio_app/src/models/PodCast.dart';
 import 'package:arquidiocese_maceio_app/src/screens/LoadWidget.dart';
 import 'package:arquidiocese_maceio_app/src/screens/Podcast/PodcastDetails.dart';
-import 'package:arquidiocese_maceio_app/src/shared/UrlUtil.dart';
 import 'package:chaleno/chaleno.dart';
 import 'package:flutter/material.dart';
 
@@ -30,32 +29,68 @@ class _PodcastScreenState extends State<PodcastScreen> {
   }
 
   Future<void> scrapData() async {
+    podcasts.clear();
     debugPrint("Inicializando os podcast da Arquidiocese...");
     var response = await Chaleno().load(ARQUIDIOCESE_PODCAST_URL);
-    List<Result>? resultado = response?.getElementsByClassName('track');
-    for (var index in resultado!) {
-      var link = index.querySelector("a")!.text;
-      var pods = extractOf(index.text!, link!);
-      if (pods.ano == 2022) {
-        podcasts.add(pods);
+    List<Result>? resultado =
+        response!.getElementsByClassName('custom-html-widget');
+    html.Document document = html.Document();
+    for (int indice = 0; indice < resultado.length; indice++) {
+      var texto = resultado[indice].text;
+      texto = texto!.replaceAll("[", "");
+      texto = texto.replaceAll("]", "");
+      var attr = "mp3";
+      var htmlNovo = html.Text(texto);
+
+      document.append(htmlNovo);
+      String textoHtml = document.outerHtml;
+      var regex = RegExp(r'mp3="(.*?)"');
+
+      final regexResult = textoHtml.split("mp3=");
+      //regex.firstMatch(textoHtml.toString())?.group(1);
+      debugPrint("=> ${regexResult.length}");
+      var dataString = "";
+      var tituloString = "";
+      for (int i = 0; i < regexResult.length; i++) {
+        if (i % 2 == 0) {
+          final RegExp titleRegex = RegExp(r'title="(.*?)"');
+          final RegExp dateRegex = RegExp(r'songwriter="(.*?)"');
+          final Match matchData = dateRegex.firstMatch(regexResult[i])!;
+          final Match matchTitle = titleRegex.firstMatch(regexResult[i])!;
+          dataString = matchData.group(1)!;
+          tituloString = matchTitle.group(1)!;
+          debugPrint("Data: $dataString");
+          debugPrint("Titulo: $tituloString");
+        }
+        if (i % 2 == 1) {
+          //final RegExp dateRegex = RegExp(r'mp3="(.*?)"');
+          //final Match matchMp3 = dateRegex.firstMatch(regexResult[i])!;
+          var link = regexResult[i].replaceAll("\"", "");
+          debugPrint("Link: $link");
+          var pods = extractOf(dataString, link, tituloString);
+          if (pods.ano == 2022) {
+            podcasts.add(pods);
+          }
+        }
       }
+      //debugPrint("Resultado $indice: ${textoHtml}}");
     }
     setState(() {
       loading = false;
     });
   }
 
-  PodCast extractOf(String elements, String url) {
-    int dataIndiceInicial = elements.indexOf("(");
-    int dataIndiceFinal = elements.indexOf(")");
-    String data = elements
-        .substring(dataIndiceInicial, dataIndiceFinal)
-        .replaceAll("(", "");
-    String titulo = elements.substring(0, dataIndiceInicial);
+  PodCast extractOf(String data, String url, String title) {
+    // int dataIndiceInicial = elements.indexOf("(");
+    // int dataIndiceFinal = elements.indexOf(")");
+    //String data = elements
+    //  .substring(dataIndiceInicial, dataIndiceFinal)
+    //.replaceAll("(", "");
+    //String titulo = elements.substring(0, dataIndiceInicial);
     var dataArray = data.split(".");
     int? ano = int.tryParse(dataArray.last) ?? 9999;
     PodCast podcast = PodCast(
-        url: url, data: data.replaceAll(".", "/"), titulo: titulo, ano: ano);
+        url: url, data: data.replaceAll(".", "/"), titulo: title, ano: ano);
     return podcast;
   }
 
@@ -114,51 +149,56 @@ class _PodcastScreenState extends State<PodcastScreen> {
                                   borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(30.0),
                                       topRight: Radius.circular(30.0))),
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: podcasts.length,
-                                  itemBuilder:
-                                      (BuildContext buildContext, int index) {
-                                    return Card(
-                                      elevation: 4,
-                                      margin: EdgeInsets.all(10),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: ListTile(
-                                        dense: true,
-                                        selectedColor: darkLightBlue,
-                                        onTap: () => Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => PodCastDetailsScreen(
-                                                urlAudio: podcasts[index].url!,
-                                                programa:
-                                                    "Discipulos e Missionários",
-                                                episodio:
-                                                    podcasts[index].titulo!,
-                                                capa:
-                                                    "assets/img/discipulomissionario.jpeg"),
-                                          ),
-                                        ),
-                                        title: podcasts[index].titulo!.length >
-                                                100
-                                            ? Text(podcasts[index].titulo!,
-                                                overflow: TextOverflow.ellipsis)
-                                            : Text(
-                                                podcasts[index].titulo!,
-                                              ),
-                                        subtitle: Text(
-                                            'Publicado em ${podcasts[index].data!}'),
-                                        leading: Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 20.0),
-                                          child: Image.asset(
-                                              "assets/img/arqbrasao.png"),
+                              child: ListView.separated(
+                                shrinkWrap: true,
+                                itemCount: podcasts.length,
+                                itemBuilder:
+                                    (BuildContext buildContext, int index) {
+                                  return Card(
+                                    color: Colors.transparent,
+                                    elevation: 0,
+                                    margin: EdgeInsets.all(10),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: ListTile(
+                                      selectedColor: darkLightBlue,
+                                      onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => PodCastDetailsScreen(
+                                              urlAudio: podcasts[index].url!,
+                                              programa:
+                                                  "Discipulos e Missionários",
+                                              episodio: podcasts[index].titulo!,
+                                              capa:
+                                                  "assets/img/discipulomissionario.jpeg"),
                                         ),
                                       ),
-                                    );
-                                  }),
+                                      title: podcasts[index].titulo!.length >
+                                              100
+                                          ? Text(podcasts[index].titulo!,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis)
+                                          : Text(
+                                              podcasts[index].titulo!,
+                                            ),
+                                      subtitle: Text(
+                                          'Publicado em ${podcasts[index].data!}'),
+                                      leading: Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 20.0),
+                                        child: Image.asset(
+                                            "assets/img/arqbrasao.png"),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                separatorBuilder:
+                                    (BuildContext context, int index) {
+                                  return Divider();
+                                },
+                              ),
                             ),
                           )),
               ],

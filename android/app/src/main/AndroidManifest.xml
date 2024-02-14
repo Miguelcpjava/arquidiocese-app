@@ -2,7 +2,7 @@
     package="dev.oxelab.arquidiocese_maceio_app">
    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="Arquidiocese de Maceió"
+        android:label="@string/appName"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">

@@ -40,7 +40,7 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
 
   adicionarNovaNoticias(items, bool limit) {
     bool numeroMaximoNoticia = false;
-
+    _noticias.clear();
     for (RssItem item in items) {
       numeroMaximoNoticia = _noticias.length > 21 ? false : true;
       int index = item.content!.images.length;
@@ -136,12 +136,9 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
                                         ),
                                       ),
                                     ),
-                                    title: _noticias[index].title!.length > 100
-                                        ? Text(_noticias[index].title!,
-                                            overflow: TextOverflow.ellipsis)
-                                        : Text(
-                                            _noticias[index].title!,
-                                          ),
+                                    title: Text(_noticias[index].title!,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis),
                                     subtitle: Text('Publicado em ' +
                                         DateFormat("dd/MM/yyyy")
                                             .format(_noticias[index].date)),

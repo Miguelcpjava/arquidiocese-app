@@ -128,7 +128,7 @@ class _ParoquiaScreenState extends State<ParoquiaScreen> {
                     procurarPorBairro(value);
                   },
                   controller: editingController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       fillColor: Colors.white,
                       labelStyle: TextStyle(
                         color: Colors.white,
@@ -151,14 +151,16 @@ class _ParoquiaScreenState extends State<ParoquiaScreen> {
               ),
               Expanded(
                   child: Container(
-                padding: const EdgeInsets.only(top: 4.0),
                 height: double.infinity,
                 decoration: const BoxDecoration(
-                    color: darkLightBlue,
+                    color: Colors.white,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30.0),
                         topRight: Radius.circular(30.0))),
-                child: ListView.builder(
+                child: ListView.separated(
+                  separatorBuilder: (context, index) {
+                    return const Divider();
+                  },
                   shrinkWrap: true,
                   itemCount: listaOriginal.length,
                   itemBuilder: (context, index) {

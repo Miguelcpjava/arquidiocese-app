@@ -18,7 +18,7 @@ class VideoScreen extends StatefulWidget {
 
 class _VideoScreenState extends State<VideoScreen> {
   late bool loading;
-  static const String _youtube = "Teste";
+  static const String _youtube = "";
   YoutubeAPI ytApi = YoutubeAPI(_youtube, maxResults: 20, type: "channel");
   List<YouTubeVideo> videoResult = [];
   List<VideoArq> videosArquidiocese = [];
@@ -34,6 +34,7 @@ class _VideoScreenState extends State<VideoScreen> {
   }
 
   Future<void> getVideosDaArquidiocese() async {
+    videosArquidiocese.clear();
     videoResult = await ytApi.search(ARQUIDIOCESE_CHANNEL);
     for (var video in videoResult) {
       videosArquidiocese.add(VideoArq(
@@ -139,6 +140,8 @@ class _VideoScreenState extends State<VideoScreen> {
                                             overflow: TextOverflow.ellipsis)
                                         : Text(
                                             videosArquidiocese[index].title,
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
                                           ),
                                     subtitle: Text(
                                         'Publicado em ${formatador.getTransformadorStringParaData(videosArquidiocese[index].publishedAt!)}'),

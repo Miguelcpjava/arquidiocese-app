@@ -45,6 +45,7 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
 
   updateFeed(feed) {
     setState(() {
+      _noticias.clear();
       _rssFeed = feed;
       adicionarNovaNoticias(_rssFeed.items, true);
       loading = false;
@@ -78,7 +79,7 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
       SnackBar(
         elevation: 0,
         content: Text(
-          "O menu $title está em desenvolvimento!",
+          message,
           style: const TextStyle(
               color: Colors.white, fontSize: 15, fontWeight: FontWeight.w600),
         ),
@@ -202,7 +203,11 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
                                         ),
                                       ),
                                     ),
-                                    title: Text(_noticias[index].title!),
+                                    title: Text(
+                                      _noticias[index].title!,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                     subtitle: Text('Publicado em ' +
                                         DateFormat("dd/MM/yyyy")
                                             .format(_noticias[index].date)),

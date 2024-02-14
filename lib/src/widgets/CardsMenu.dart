@@ -16,33 +16,36 @@ class CardsMenu extends StatefulWidget {
 class _CardsMenuState extends State<CardsMenu> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 110,
-      width: 110,
-      padding: const EdgeInsets.all(5.0),
-      margin: const EdgeInsets.all(7.0),
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        color: Colors.white,
-      ),
-      child: Column(
-        // Replace with a Row for horizontal icon + text
-        children: <Widget>[
-          Icon(
-            widget.icon ?? Icons.info,
-            color: Theme.of(context).primaryColor,
-            size: 45.0,
-          ),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
-          Text(
-            widget.text,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                decoration: TextDecoration.none,
+    return Card(
+      child: SizedBox(
+        width: 130.0,
+        height: 130.0,
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(
+                widget.icon,
+                size: 48.0,
                 color: Theme.of(context).primaryColor,
-                fontSize: 14.0),
+              ),
+              const SizedBox(height: 8.0),
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  widget.text,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 11.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
