@@ -136,12 +136,21 @@ class _UltimasNoticiasScreenState extends State<UltimasNoticiasScreen> {
                                         ),
                                       ),
                                     ),
-                                    title: Text(_noticias[index].title!,
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis),
-                                    subtitle: Text('Publicado em ' +
-                                        DateFormat("dd/MM/yyyy")
-                                            .format(_noticias[index].date)),
+                                    title: Text(
+                                      _noticias[index].title!,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          fontSize: FONTE_TEXTO_PADRAO),
+                                    ),
+                                    subtitle: Text(
+                                      'Publicado em ' +
+                                          DateFormat("dd/MM/yyyy")
+                                              .format(_noticias[index].date),
+                                      style: TextStyle(
+                                          color: Colors.grey[500],
+                                          fontSize: FONTE_TEXTO_SUBTITULO),
+                                    ),
                                     leading: Container(
                                       width: 90.0,
                                       height: 90.0,

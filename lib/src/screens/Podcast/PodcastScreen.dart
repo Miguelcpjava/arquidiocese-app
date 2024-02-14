@@ -48,7 +48,7 @@ class _PodcastScreenState extends State<PodcastScreen> {
 
       final regexResult = textoHtml.split("mp3=");
       //regex.firstMatch(textoHtml.toString())?.group(1);
-      debugPrint("=> ${regexResult.length}");
+      //debugPrint("=> ${regexResult.length}");
       var dataString = "";
       var tituloString = "";
       for (int i = 0; i < regexResult.length; i++) {
@@ -59,14 +59,14 @@ class _PodcastScreenState extends State<PodcastScreen> {
           final Match matchTitle = titleRegex.firstMatch(regexResult[i])!;
           dataString = matchData.group(1)!;
           tituloString = matchTitle.group(1)!;
-          debugPrint("Data: $dataString");
-          debugPrint("Titulo: $tituloString");
+          //debugPrint("Data: $dataString");
+          //debugPrint("Titulo: $tituloString");
         }
         if (i % 2 == 1) {
           //final RegExp dateRegex = RegExp(r'mp3="(.*?)"');
           //final Match matchMp3 = dateRegex.firstMatch(regexResult[i])!;
           var link = regexResult[i].replaceAll("\"", "");
-          debugPrint("Link: $link");
+          //debugPrint("Link: $link");
           var pods = extractOf(dataString, link, tituloString);
           if (pods.ano == 2022) {
             podcasts.add(pods);
@@ -157,7 +157,7 @@ class _PodcastScreenState extends State<PodcastScreen> {
                                   return Card(
                                     color: Colors.transparent,
                                     elevation: 0,
-                                    margin: EdgeInsets.all(10),
+                                    margin: const EdgeInsets.all(10),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10)),
@@ -175,16 +175,19 @@ class _PodcastScreenState extends State<PodcastScreen> {
                                                   "assets/img/discipulomissionario.jpeg"),
                                         ),
                                       ),
-                                      title: podcasts[index].titulo!.length >
-                                              100
-                                          ? Text(podcasts[index].titulo!,
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis)
-                                          : Text(
-                                              podcasts[index].titulo!,
-                                            ),
+                                      title: Text(
+                                        podcasts[index].titulo!,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(
+                                            fontSize: FONTE_TEXTO_PADRAO),
+                                      ),
                                       subtitle: Text(
-                                          'Publicado em ${podcasts[index].data!}'),
+                                        'Publicado em ${podcasts[index].data!}',
+                                        style: TextStyle(
+                                            color: Colors.grey[500],
+                                            fontSize: FONTE_TEXTO_SUBTITULO),
+                                      ),
                                       leading: Padding(
                                         padding:
                                             const EdgeInsets.only(right: 20.0),

@@ -5,6 +5,8 @@ const Color darkBlue = Color(0xFF175B9A);
 const Color darkLightBlue = Color.fromARGB(255, 140, 196, 242);
 const Color yellowAccenture = Color(0XFFF6EF74);
 const String ARQUIDIOCESE_CHANNEL = "@arqdemaceio";
+const double FONTE_TEXTO_PADRAO = 13.0;
+const double FONTE_TEXTO_SUBTITULO = 11.0;
 const String ARQUIDIOCESE_PODCAST_URL =
     "https://www.centenarioarqmaceio.com.br/podcasts/";
 const IconData church =

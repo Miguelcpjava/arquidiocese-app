@@ -207,10 +207,17 @@ class _NoticiasScreenState extends State<NoticiasScreen> {
                                       _noticias[index].title!,
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          fontSize: FONTE_TEXTO_PADRAO),
                                     ),
-                                    subtitle: Text('Publicado em ' +
-                                        DateFormat("dd/MM/yyyy")
-                                            .format(_noticias[index].date)),
+                                    subtitle: Text(
+                                      'Publicado em ' +
+                                          DateFormat("dd/MM/yyyy")
+                                              .format(_noticias[index].date),
+                                      style: TextStyle(
+                                          color: Colors.grey[500],
+                                          fontSize: FONTE_TEXTO_SUBTITULO),
+                                    ),
                                     leading: Container(
                                       width: 70.0,
                                       height: 70.0,

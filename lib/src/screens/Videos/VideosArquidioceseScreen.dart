@@ -124,48 +124,51 @@ class _VideoScreenState extends State<VideoScreen> {
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(30.0),
                                     topRight: Radius.circular(30.0))),
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: videosArquidiocese.length,
-                                itemBuilder:
-                                    (BuildContext buildContext, int index) {
-                                  return ListTile(
-                                    onTap: () => UrlUtils().getLaunchUrl(
-                                        videosArquidiocese[index].url),
-                                    title: videosArquidiocese[index]
-                                                .title
-                                                .length >
-                                            100
-                                        ? Text(videosArquidiocese[index].title,
-                                            overflow: TextOverflow.ellipsis)
-                                        : Text(
-                                            videosArquidiocese[index].title,
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                    subtitle: Text(
-                                        'Publicado em ${formatador.getTransformadorStringParaData(videosArquidiocese[index].publishedAt!)}'),
-                                    leading: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 20.0),
-                                      child: videosArquidiocese[index]
-                                              .thumbnail!
-                                              .small
-                                              .url!
-                                              .isNotEmpty
-                                          ? Image.network(
-                                              videosArquidiocese[index]
-                                                      .thumbnail!
-                                                      .small
-                                                      .url ??
-                                                  '',
-                                              width: 120.0,
-                                            )
-                                          : Image.asset(
-                                              "assets/img/ImageNA.png"),
-                                    ),
-                                  );
-                                }),
+                            child: ListView.separated(
+                              shrinkWrap: true,
+                              itemCount: videosArquidiocese.length,
+                              itemBuilder:
+                                  (BuildContext buildContext, int index) {
+                                return ListTile(
+                                  onTap: () => UrlUtils().getLaunchUrl(
+                                      videosArquidiocese[index].url),
+                                  title: Text(
+                                    videosArquidiocese[index].title,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                        fontSize: FONTE_TEXTO_PADRAO),
+                                  ),
+                                  subtitle: Text(
+                                    'Publicado em ${formatador.getTransformadorStringParaData(videosArquidiocese[index].publishedAt!)}',
+                                    style: TextStyle(
+                                        color: Colors.grey[500],
+                                        fontSize: FONTE_TEXTO_SUBTITULO),
+                                  ),
+                                  leading: Padding(
+                                    padding: const EdgeInsets.only(right: 20.0),
+                                    child: videosArquidiocese[index]
+                                            .thumbnail!
+                                            .small
+                                            .url!
+                                            .isNotEmpty
+                                        ? Image.network(
+                                            videosArquidiocese[index]
+                                                    .thumbnail!
+                                                    .small
+                                                    .url ??
+                                                '',
+                                            width: 120.0,
+                                          )
+                                        : Image.asset("assets/img/ImageNA.png"),
+                                  ),
+                                );
+                              },
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                return new Divider();
+                              },
+                            ),
                           ),
                         ),
                 ),
